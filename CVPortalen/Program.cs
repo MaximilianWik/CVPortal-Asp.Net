@@ -1,4 +1,5 @@
 using CVPortalen.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -11,6 +12,9 @@ builder.Services.AddControllersWithViews(); ;
 builder.Services.AddDbContext<ProfilContext>(options => 
                                        options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("ProfilContext")));
 
+builder.Services.AddIdentity<Anvandare, IdentityRole>()
+                .AddEntityFrameworkStores<ProfilContext>()
+                .AddDefaultTokenProviders();
 
 var app = builder.Build();
 

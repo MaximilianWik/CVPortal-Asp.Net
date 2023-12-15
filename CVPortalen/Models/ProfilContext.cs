@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace CVPortalen.Models
 {
-    public class ProfilContext : DbContext
+    public class ProfilContext : IdentityDbContext<Anvandare>
     {
         public ProfilContext(DbContextOptions<ProfilContext> options) : base(options) { }
 
