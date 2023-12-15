@@ -24,7 +24,7 @@ namespace CVPortalen.Controllers
 
 
         //Bara authorizeacde användare kan se viewen nedanför
-        [Authorize]
+        //[Authorize]
         public IActionResult Index()
         {
             return View();

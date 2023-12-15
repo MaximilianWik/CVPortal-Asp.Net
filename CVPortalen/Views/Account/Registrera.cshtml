@@ -1,6 +1,7 @@
 ﻿@model AnvandarRegisterViewModel
 
-<div asp-validation-summary="All" class="text-danger"></div>
+@* Lägger till eventuella felmeddelanden från ARviewModelsn validering
+ *@<div asp-validation-summary="All" class="text-danger"></div>
 
 <form method="post" asp-action="Registrera">
     <div class="form-group row">
