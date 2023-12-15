@@ -22,10 +22,10 @@ namespace CVPortalen.Controllers
             return View(loginViewModel);
         }
 
-        //[HttpGet]
-        //public IActionResult Registrera()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public IActionResult Registrera()
+        {
+            return View();
+        }
     }
 }
