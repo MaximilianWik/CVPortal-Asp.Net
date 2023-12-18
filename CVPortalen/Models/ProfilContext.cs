@@ -11,6 +11,8 @@ namespace CVPortalen.Models
 
         public DbSet<CV> cVs { get; set; }
 
+        public DbSet<Anvandare> Anv { get; set; } 
+
         public DbSet<Projekt> projekt { get; set; }
 
         public DbSet<Meddelande> meddelande { get; set; }

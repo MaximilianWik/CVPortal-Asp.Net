@@ -1,5 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+
+
+
 }
 
 @*<div class="text-center">
@@ -12,11 +16,12 @@
 
 @* Logga ut knapp funkar inte än *@
 
-@* <form method="post" asp-controller="Account" asp-action="Loggaut">
-    <AuthorizeView>
-        <Authorized>
+@if (User.Identity.IsAuthenticated) {
+<form method="post" asp-controller="Account" asp-action="Loggaut">
+    
             <h2>Du är loggad in som @User.Identity.Name</h2>
             <input type="submit" value="Logga ut" />
-        </Authorized>
-    </AuthorizeView>
-</form> *@
+</form>
+}
+
+

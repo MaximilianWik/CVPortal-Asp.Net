@@ -41,10 +41,13 @@ namespace CVPortalen.Controllers
                 anvandare.UserName = anvandarRegisterViewModel.AnvandarNamn;
 
                 var result = await userManager.CreateAsync(anvandare, anvandarRegisterViewModel.Losenord);
+                
 
                 if (result.Succeeded)
                 {
+                    Console.WriteLine("Test");
                     await signInManager.SignInAsync(anvandare, isPersistent: true);
+                    
                     return RedirectToAction("Index", "Home");
                 }
             }
