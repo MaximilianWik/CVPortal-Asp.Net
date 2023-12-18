@@ -7,38 +7,214 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CVPortalen.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        @* <form asp-action="Index" method=" get">
+            <label> Sök på användare</label>
+            <input type="text" name="id" />
+            <button type="submit">Sök</button>
+        </form> *@
+        
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CVPortalen</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between align-items-center">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item flex-grow-1">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogIn">Log In</a>
+                            
+                        </li>
+                        <li class="nav-item">
+                            <form class="ms-auto" asp-action="Index" method="get">
+                                <label class="me-2">Sök på användare</label>
+                                <input type="text" name="id" class="me-2">
+                                <button type="submit">Sök</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+                <!-- Navbar content, including the brand and navigation links -->
+            </nav>
+        </header>
+
+        <!-- Content of the home page -->
+        <div class="container">
+            <h1>CV:n</h1>
+            <!-- Other content goes here -->
+        </div>
+        <div class="image-container">
+            <div class="top-row">
+                @* <img src="Anton-CV.jpg" alt="Image 1"> *@
+                <img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 1">
+                <img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 2">
+                <img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 3">
+            </div>
+           <div class="bottom-row">
+                <img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 4">
+                <img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 5">
+           </div>
+        </div>
+           <h2>Projects</h2>
+
+        
+        <table class="projects-table">
+
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Purpose</th>
+                    <th>Company</th>
+                    <th>Profiles </th>
+                    <th>More Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    
+                </tr>
+                <td>
+                        In this recent project, I embarked on a captivating journey to revitalize a local community space.
+                        The initiative aimed to create a vibrant hub for social interaction and cultural exchange. 
+                        Leveraging my skills in project management and collaboration,
+                        I orchestrated a team of dedicated volunteers and local artists.
+                        Together, we transformed a neglected area into a welcoming oasis adorned with colorful murals and interactive installations.
+                        The project not only breathed new life into the community but also fostered a sense of unity and pride.
+                        Witnessing the smiles and gratitude from residents showcased the transformative power of thoughtful projects 
+                        in enhancing the fabric of our neighborhoods.
+                    </td>
+                    <td>
+                        The purpose of this project was to nurture community spirit, inspire creativity, and provide a space that fosters connections.
+                        By revitalizing the area, we aimed to cultivate a sense of belonging and pride among residents. 
+                        The project served as a testament to the positive impact of community-driven initiatives on well-being and social cohesion.
+                    </td>
+                    <td>Harmony Haven Initiatives</td>
+                    <td>
+                        <a href="Anton_wikstrom_profil.HTML">Anton Lindborg</a>
+                    </td>
+                    <td><button class="read-more">Read More</button></td>
+                </tr>
+                <tr>
+                    <td>In a recent tech endeavor, I spearheaded the development of an innovative mobile app aimed at promoting sustainable living.
+                        The app seamlessly integrated features for tracking carbon footprints, offering eco-friendly product recommendations,
+                        and fostering a community for shared green initiatives. Through user-friendly interfaces and real-time data insights,
+                        the project aimed to empower individuals to make environmentally conscious choices.
+                        The app not only facilitated eco-awareness but also served as a catalyst for positive environmental change, 
+                        underscoring the transformative potential of technology in shaping a more sustainable future.
+                    </td>
+                    <td>
+                        The project sought to empower users with practical tools for sustainable living, encouraging mindful consumption and reducing environmental impact.
+                        By fostering a community around eco-conscious practices, the app aimed to inspire a collective shift towards sustainability. 
+                        Ultimately, it aspired to be a catalyst for positive environmental behavior change on a global scale.</td>
+                   
+                        <td>
+                            EcoTech Innovations
+                        </td>
+                    <td>
+                        <a href="max_wikstrom_profil.HTML">Max Wikström </a>
+                        </td>
+                <td><button class="read-more">Read More</button></td>
+
+                    <td>
+                <tr>
+                    <td>
+                        In an ambitious venture, I led a technology-driven initiative called "EduSpark.
+                        " The project aimed to revolutionize education by developing an interactive e-learning platform 
+                        for students worldwide. Through engaging multimedia content and real-time collaboration tools,
+                        EduSpark fostered an immersive and personalized learning experience. Tailored assessments 
+                        and AI-driven feedback ensured adaptive learning paths for each student. 
+                        The platform's success lay not only in its technological advancements but also in its dedication
+                        to democratizing quality education. EduSpark became a beacon of accessible knowledge, 
+                        empowering learners to thrive in a rapidly evolving digital landscape.
+                    </td>
+                    <td>
+                        "EduSpark" aspired to democratize education by providing a cutting-edge e-learning platform.
+                        The purpose was to offer students globally an interactive, personalized, and accessible
+                        educational experience. Through innovative technology and adaptive learning tools, 
+                        EduSpark aimed to break barriers and empower learners of all backgrounds to excel in their
+                        academic journey.
+                    </td>
+                    <td>GreenScape</td>
+                    <td>
+                        <a href="Filip_Nydén_profil.HTML">Filip Nydén</a>
+                    </td>
+                    <td><button class="read-more">Read More</button></td>
+                </tr>
+            <td>
+                In this recent project, I embarked on a captivating journey to revitalize a local community space.
+                The initiative aimed to create a vibrant hub for social interaction and cultural exchange.
+                Leveraging my skills in project management and collaboration,
+                I orchestrated a team of dedicated volunteers and local artists.
+                Together, we transformed a neglected area into a welcoming oasis adorned with colorful murals and interactive installations.
+                The project not only breathed new life into the community but also fostered a sense of unity and pride.
+                Witnessing the smiles and gratitude from residents showcased the transformative power of thoughtful projects
+                in enhancing the fabric of our neighborhoods.
+            </td>
+            <td>
+                The purpose of this project was to nurture community spirit, inspire creativity, and provide a space that fosters connections.
+                By revitalizing the area, we aimed to cultivate a sense of belonging and pride among residents.
+                The project served as a testament to the positive impact of community-driven initiatives on well-being and social cohesion.
+            </td>
+            <td>Bajens fanclub</td>
+            <td>
+                <a href="Jacob_Wahlström_profil.HTML">Jacob Wahlström</a>
+            </td>
+            <td><button class="read-more">Read More</button></td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    In a recent tech endeavor, I spearheaded the development of an innovative mobile app aimed at promoting sustainable living.
+                    The app seamlessly integrated features for tracking carbon footprints, offering eco-friendly product recommendations,
+                    and fostering a community for shared green initiatives. Through user-friendly interfaces and real-time data insights,
+                    the project aimed to empower individuals to make environmentally conscious choices.
+                    The app not only facilitated eco-awareness but also served as a catalyst for positive environmental change,
+                    underscoring the transformative potential of technology in shaping a more sustainable future.
+                </td>
+                <td>
+                    The project sought to empower users with practical tools for sustainable living, encouraging mindful consumption and reducing environmental impact.
+                    By fostering a community around eco-conscious practices, the app aimed to inspire a collective shift towards sustainability.
+                    Ultimately, it aspired to be a catalyst for positive environmental behavior change on a global scale.
+                </td>
+
+                <td>
+                    Maze Bank
+                </td>
+                <td>
+                    <a href="johan_salomon_profil.HTML">Johan Salomon </a>
+                </td>
+                <td><button class="read-more">Read More</button></td>
+
+
+            </tbody>
+        </table>
+
+        <!-- Other HTML content, scripts, etc. -->
+
+    </body>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+     
     </div>
 
     <footer class="border-top footer text-muted">

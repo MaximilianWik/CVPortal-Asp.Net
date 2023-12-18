@@ -46,3 +46,131 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    margin: 0;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    color: grey;
+    text-align: right;
+}
+
+label, input, button {
+    margin: 0;
+    margin-right: 15px;
+}
+
+.navbar-collapse {
+    margin-right: 15px;
+}
+
+/*body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;*/ /* Ensures the container takes up the full height of the viewport */
+/*margin: 0;*/ /* Remove default body margin */
+/*}*/
+
+.container {
+    text-align: center;
+}
+
+    .container h1 {
+        font-size: 36px;
+        color: black;
+    }
+/*flytta alla bilder på startsidan*/
+.image-container {
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    align-items: center; /* Center items horizontally in the column */
+    margin-top: 20px; /* Add space between text and images */
+}
+
+.top-row img.max-width-50 {
+    width: 100%;
+    margin: 20px;
+    max-width: 30%;
+}
+
+{
+}
+
+.image-container .top-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px; /* Add space between top row and bottom row */
+}
+
+.image-container .bottom-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+h1 {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Optionally, make the text bold */
+    color: #333; /* Set the text color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+/*Project titeln CSS*/
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
+}
+/*Projekt tabell som gör att den visas lite snyggt :D*/
+.projects-table {
+    width: 95%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Add space between "Projects" header and the table */
+    margin: 20px auto;
+}
+
+    .projects-table th, .projects-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .projects-table th {
+        background-color: #f2f2f2;
+    }
+/*läs Mer knapp CSS*/
+.read-more {
+    /*    padding: 5px 10px;
+*/ color: blue;
+    border: none;
+    cursor: pointer;
+}
+
+    .read-more:hover {
+        background-color: #2980b9;
+    }
