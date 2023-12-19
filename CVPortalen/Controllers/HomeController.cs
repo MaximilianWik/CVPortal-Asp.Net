@@ -25,13 +25,17 @@ namespace CVPortalen.Controllers
 
         //Bara authorizeacde användare kan se viewen nedanför
 
-        [Authorize]
+        //[Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
-
+        [HttpGet]
+        public IActionResult ProfilFilip()
+        {
+            return View();
+        }
 
         //Nedan kan behöva av-kommenteras vid senare tillfälle
         //public IActionResult Privacy()

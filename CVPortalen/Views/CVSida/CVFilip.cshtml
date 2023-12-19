@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min CV</title>
+    <!-- Lägg till eventuella andra nödvändiga stilfiler eller skript här -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .cv-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .editable {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .edit-button, .save-button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        /* Lägg till ytterligare stilar efter behov */
+    </style>
+</head>
+<body>
+
+    <div class="cv-container">
+        <h2>Mitt CV</h2>
+
+        <div class="editable" contenteditable="false">
+            <h3>Personlig Information</h3>
+            <p><strong>Namn:</strong> John Doe</p>
+            <p><strong>Ålder:</strong> 30</p>
+            <p><strong>Stad:</strong> Anytown</p>
+
+            <!-- Lägg till fler personliga detaljer efter behov -->
+        </div>
+
+        <div class="editable" contenteditable="false">
+            <h3>Utbildning</h3>
+            <p><strong>Examensår:</strong> 2020</p>
+            <p><strong>Examensinriktning:</strong> Datavetenskap</p>
+            <p><strong>Skola:</strong> Universitetet X</p>
+
+            <!-- Lägg till fler utbildningsdetaljer efter behov -->
+        </div>
+
+        <button class="edit-button" onclick="toggleEditable()">Redigera</button>
+        <button class="save-button" onclick="saveChanges()">Spara</button>
+    </div>
+
+    <script>
+        function toggleEditable() {
+            var editableElements = document.querySelectorAll('.editable');
+            editableElements.forEach(function (element) {
+                element.contentEditable = !element.isContentEditable;
+            });
+        }
+
+        function saveChanges() {
+            // Lägg till kod för att spara ändringar (t.ex. skicka till server)
+            alert('Ändringar sparade!');
+        }
+    </script>
+
+</body>
+</html>
+

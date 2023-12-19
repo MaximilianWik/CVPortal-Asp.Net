@@ -1,6 +1,7 @@
 ﻿namespace CVPortalen.Controllers
 {
-    public class ProfilController
+    public class ProfilController 
     {
+
     }
 }
