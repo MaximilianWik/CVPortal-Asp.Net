@@ -37,6 +37,11 @@ namespace CVPortalen.Controllers
             return View();
         }
 
+        public IActionResult ProjektJacob()
+        {
+            return View();
+        }
+
         //Nedan kan behöva av-kommenteras vid senare tillfälle
         //public IActionResult Privacy()
         //{
