@@ -18,7 +18,7 @@ namespace CVPortalen.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            // Retrieve and display messages for the current user
+            // Hämtar och visar meddelanden för den inloggade användaren
             var userId = userManager.GetUserId(User);
             var messages = dbContext.Messages
                 .Where(m => m.ReceiverId == userId)
@@ -35,32 +35,7 @@ namespace CVPortalen.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Create(MessageViewModel model)
-        //{
-        //    // Create and send a new message
-        //    if (ModelState.IsValid)
-        //    {
-        //        var senderId = userManager.GetUserId(User);
-
-        //        var message = new Message
-        //        {
-        //            SenderId = senderId,
-        //            ReceiverId = model.ReceiverId,
-        //            Content = model.Content,
-        //            SentAt = DateTime.UtcNow,
-        //            IsRead = false
-        //        };
-
-
-        //        dbContext.Messages.Add(message);
-        //        dbContext.SaveChanges();
-
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(model);
-        //}
+       
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync(MessageViewModel model)
@@ -84,7 +59,7 @@ namespace CVPortalen.Controllers
                     dbContext.Messages.Add(message);
                     dbContext.SaveChanges();
 
-                    // Assuming you have an action named "Index" in the "MessageController"
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -93,7 +68,7 @@ namespace CVPortalen.Controllers
                 }
             }
 
-            return View();  // Return the view for creating a message if there are validation errors
+            return View();  // returnerar viewen för att skicka meddelanden om d sker valideringsfel
         }
 
 
