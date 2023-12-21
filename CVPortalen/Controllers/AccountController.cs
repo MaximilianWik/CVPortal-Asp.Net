@@ -47,7 +47,7 @@ namespace CVPortalen.Controllers
                     Console.WriteLine("Test");
                     await signInManager.SignInAsync(anvandare, isPersistent: true);
                     
-                    return RedirectToAction("Index2", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace CVPortalen.Controllers
                     
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index2", "Home");
+                    return RedirectToAction("Index", "Home");
 
                 }
                 else
