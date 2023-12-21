@@ -20,8 +20,8 @@ namespace CVPortalen.Models
         public bool IsRead { get; set; }
 
         // Lägg till detta till navigation property
-        public Anvandare Sender { get; set; }
-        public Anvandare Receiver { get; set; }
+        public virtual Anvandare Sender { get; set; }
+        public virtual Anvandare Receiver { get; set; }
     }
 
 }

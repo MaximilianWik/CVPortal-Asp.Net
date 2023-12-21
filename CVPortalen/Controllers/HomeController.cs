@@ -1,35 +1,36 @@
 using System.Diagnostics;
 using CVPortalen.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CVPortalen.Controllers
 {
     public class HomeController : Controller
     {
-        private ProfilContext _dBContext;
+        private readonly ProfilContext _dBContext;
+        private readonly UserManager<Anvandare> _userManager;
 
-        public HomeController(ProfilContext dbContext)
+        public HomeController(ProfilContext dbContext, UserManager<Anvandare> userManager)
         {
             _dBContext = dbContext;
+            _userManager = userManager;
         }
 
 
-        //private readonly ILogger<HomeController> _logger;
 
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
-
-        //Bara authorizeacde användare kan se viewen nedanför
 
         //[Authorize]
-
         public IActionResult Index()
         {
-            return View();
+            var currentUser = _userManager.GetUserAsync(User).Result;
+
+            // Fetch messages for the current user
+            var messages = _dBContext.Messages
+                .Where(m => m.ReceiverId == currentUser.Id)
+                .ToList();
+
+            return View(messages);
         }
 
         [Authorize]

@@ -18,9 +18,19 @@ namespace CVPortalen.Models
 
         public DbSet<Meddelande> meddelande { get; set; }
 
+
+        public DbSet<Message> Messages { get; set; }
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+
+
+
+
 
             modelBuilder.Entity<Anvandare>().HasData(
                 new Anvandare
@@ -123,25 +133,25 @@ namespace CVPortalen.Models
 
             );
 
-            modelBuilder.Entity<CV>().HasData(
-                new CV
-                {
-                    CVId = 1,
-                    Titel = "Test1",
-                    Arbetsplats = "TestCO",
-                    Beskrivning = "Hej"
 
-                },
 
-                new CV
-                {
-                    CVId = 2,
-                    Titel = "Test2",
-                    Arbetsplats = "TestCO",
-                    Beskrivning = "Hej"
+            // Configure the relationship between Anvandare and Message
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany(u => u.SentMessages)
+                .HasForeignKey(m => m.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-                }
-                );
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Receiver)
+                .WithMany()
+                .HasForeignKey(m => m.ReceiverId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
+
+
         }
     }
 
