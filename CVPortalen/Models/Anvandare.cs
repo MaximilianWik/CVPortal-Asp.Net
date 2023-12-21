@@ -4,6 +4,6 @@ namespace CVPortalen.Models
 {
     public class Anvandare:IdentityUser
     {
-
+       
     }
 }

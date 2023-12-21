@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace CVPortalen.Models
 {
@@ -13,5 +14,8 @@ namespace CVPortalen.Models
         public string Arbetsplats { get; set; }
 
         public string Beskrivning { get; set; }
+
+        //[ForeignKey(nameof(UserManager<Anvandare>))]
+        //public string Anvandare { get; set; }
     }
 }

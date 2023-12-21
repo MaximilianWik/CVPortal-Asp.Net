@@ -15,7 +15,7 @@
 //    {
 //        public Startup(IConfiguration configuration)
 //        {
-//            Configuration = configuration; 
+//            Configuration = configuration;
 //        }
 
 //        public IConfiguration Configuration { get; }
@@ -39,14 +39,14 @@
 //        //Konfigg skiten, vet inte riktigt hur den funkar men den funkar
 //        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 //        {
-//            if(env.IsDevelopment())
+//            if (env.IsDevelopment())
 //            {
 //                app.UseDeveloperExceptionPage();
 //            }
 //            else
 //            {
 //                app.UseExceptionHandler("/Home Error FAAAAN");
-//                app.UseHsts();  
+//                app.UseHsts();
 //            }
 //            app.UseHttpsRedirection();
 //            app.UseStaticFiles();
