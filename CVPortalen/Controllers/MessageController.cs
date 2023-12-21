@@ -35,32 +35,71 @@ namespace CVPortalen.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public IActionResult Create(MessageViewModel model)
+        //{
+        //    // Create and send a new message
+        //    if (ModelState.IsValid)
+        //    {
+        //        var senderId = userManager.GetUserId(User);
+
+        //        var message = new Message
+        //        {
+        //            SenderId = senderId,
+        //            ReceiverId = model.ReceiverId,
+        //            Content = model.Content,
+        //            SentAt = DateTime.UtcNow,
+        //            IsRead = false
+        //        };
+
+
+        //        dbContext.Messages.Add(message);
+        //        dbContext.SaveChanges();
+
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View(model);
+        //}
+
         [HttpPost]
-        public IActionResult Create(MessageViewModel model)
+        public async Task<IActionResult> CreateAsync(MessageViewModel model)
         {
-            // Create and send a new message
             if (ModelState.IsValid)
             {
                 var senderId = userManager.GetUserId(User);
+                var receiver = await userManager.FindByIdAsync(model.ReceiverId);
 
-                var message = new Message
+                if (receiver != null)
                 {
-                    SenderId = senderId,
-                    ReceiverId = model.ReceiverId,
-                    Content = model.Content,
-                    SentAt = DateTime.UtcNow,
-                    IsRead = false
-                };
+                    var message = new Message
+                    {
+                        SenderId = senderId,
+                        ReceiverId = receiver.Id,
+                        Content = model.Content,
+                        SentAt = DateTime.UtcNow,
+                        IsRead = false
+                    };
 
+                    dbContext.Messages.Add(message);
+                    dbContext.SaveChanges();
 
-                dbContext.Messages.Add(message);
-                dbContext.SaveChanges();
-
-                return RedirectToAction("Index");
+                    // Assuming you have an action named "Index" in the "MessageController"
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("ReceiverId", "Receiver user not found");
+                }
             }
 
-            return View(model);
+            return View();  // Return the view for creating a message if there are validation errors
         }
+
+
+
+
+
     }
 
 }
