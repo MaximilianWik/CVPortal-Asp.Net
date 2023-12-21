@@ -19,14 +19,14 @@
 {
     <form asp-controller="Message" asp-action="Create" method="post">
         <div class="form-group">
-            <label for="ReceiverId">Receiver ID:</label>
+            <label for="ReceiverId">Mottagar ID:</label>
             <input type="text" name="ReceiverId" class="form-control" required />
         </div>
         <div class="form-group">
-            <label for="Content">Message Content:</label>
+            <label for="Content">Meddelande innehåll:</label>
             <textarea name="Content" class="form-control" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
+        <button type="submit" class="btn btn-primary">Skicka</button>
     </form>
 }
 
@@ -49,7 +49,7 @@
 
 @* Visar meddelanden
  *@
- <h2>Your Messages</h2>
+ <h2>Ditt Meddelande</h2>
 @if (Model.Any())
 {
     <ul>
@@ -61,7 +61,7 @@
 }
 else
 {
-    <p>No messages to display.</p>
+    <p>Inga meddelanden att visa.</p>
 }
 
 
