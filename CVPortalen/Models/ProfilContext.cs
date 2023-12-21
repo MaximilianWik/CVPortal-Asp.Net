@@ -61,25 +61,67 @@ namespace CVPortalen.Models
                      AccessFailedCount = 0
                  },
 
-                   new Anvandare
-                   {
-                       Id = "95140368-5cbe-46a2-8ff0-f573534cb391", // Replace with an actual user ID
-                       UserName = "JohanS",
-                       NormalizedUserName = "JOHANS",
-                       Email = null,
-                       NormalizedEmail = null,
-                       EmailConfirmed = false,
-                       PasswordHash = new PasswordHasher<Anvandare>().HashPassword(null, "Jon123!"),
-                       SecurityStamp = "2QB3XVNXYN3E3JKGLPF37UNUDS57MJC2", // Replace with an actual security stamp
-                       ConcurrencyStamp = Guid.NewGuid().ToString(),
-                       PhoneNumber = null,
-                       PhoneNumberConfirmed = false,
-                       TwoFactorEnabled = false,
-                       LockoutEnd = null,
-                       LockoutEnabled = true,
-                       AccessFailedCount = 0
-                   }
-                 );  
+
+            new Anvandare
+            {
+                Id = "95140368-5cbe-46a2-8ff0-f573534cb391", // Replace with an actual user ID
+                UserName = "JohanS",
+                NormalizedUserName = "JOHANS",
+                Email = null,
+                NormalizedEmail = null,
+                EmailConfirmed = false,
+                PasswordHash = new PasswordHasher<Anvandare>().HashPassword(null, "Jon123!"),
+                SecurityStamp = "2QB3XVNXYN3E3JKGLPF37UNUDS57MJC2", // Replace with an actual security stamp
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                PhoneNumber = null,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnd = null,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
+            },
+
+
+            new Anvandare
+            {
+                Id = "2a3691cd-2dcf-4850-a5f0-43f653fecc1a", // Replace with an actual user ID
+                UserName = "JacobW",
+                NormalizedUserName = "JACOBW",
+                Email = null,
+                NormalizedEmail = null,
+                EmailConfirmed = false,
+                PasswordHash = new PasswordHasher<Anvandare>().HashPassword(null, "Jac123!"),
+                SecurityStamp = "S4LN2MR2XLOF2MAH2DALTCBZ6UMVJV22", // Replace with an actual security stamp
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                PhoneNumber = null,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnd = null,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
+            },
+
+
+            new Anvandare
+            {
+                Id = "25d150cf-9187-4a8b-9fba-301c1972ddee", // Replace with an actual user ID
+                UserName = "MaxWik",
+                NormalizedUserName = "MAXWIK",
+                Email = null,
+                NormalizedEmail = null,
+                EmailConfirmed = false,
+                PasswordHash = new PasswordHasher<Anvandare>().HashPassword(null, "Max123!"),
+                SecurityStamp = "WHIMEAWPQ44OOY5IIDFFD4444W3VLH3G", // Replace with an actual security stamp
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                PhoneNumber = null,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnd = null,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
+            }
+
+            );
 
             modelBuilder.Entity<CV>().HasData(
                 new CV

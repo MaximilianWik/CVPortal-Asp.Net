@@ -4,6 +4,7 @@ using CVPortalen.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CVPortalen.Migrations
 {
     [DbContext(typeof(ProfilContext))]
-    partial class ProfilContextModelSnapshot : ModelSnapshot
+    [Migration("20231221130411_boom")]
+    partial class boom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,11 +97,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "eeafdb89-38a4-4e6f-a3de-63b1491c0b86",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4ed9f6b7-7994-4996-8142-a4d9cd29b3fe",
+                            ConcurrencyStamp = "3137addf-aa23-45a1-924c-3e925756996a",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "FILIPNYDEN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOK39yxim+kFvluBlAmPpm84q3dKtxrwTFPEmXohC7UA5rvH5RouCui2fIeDyR2ClA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPKpmf+qcUoxQdtOZxGHRLChR2uY+FKXhahCRn98z7Xb49CANXBmt9LLrUfQ1bbCdA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "ZHC7O3BJZA6YHMG7J4LWDL7NW4VPWY3D",
                             TwoFactorEnabled = false,
@@ -108,57 +111,15 @@ namespace CVPortalen.Migrations
                         {
                             Id = "b3d78f9f-df9a-43e9-8a50-e1cca4bfb5d9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1a9188ac-074c-4097-8fdb-5d86569bce4e",
+                            ConcurrencyStamp = "6da61e52-bf37-49f8-9694-a09fb36b6edf",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "ANTONLIND",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI3TpPyaqjiUt2VYc4AeRnmPvHH2ayepYPYfSIOTGxaVpEANZ+tNLTzAPIHTAO4+uw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBaseDlVqehAEiA64HeKwbR1paeMz165ulZ1gT3dFdWIMafojwBGWUFZZu6JIspuvA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3KSCKA2ZWKSZLFTU6VTN2U47BE2WEQRN",
                             TwoFactorEnabled = false,
                             UserName = "AntonLind"
-                        },
-                        new
-                        {
-                            Id = "95140368-5cbe-46a2-8ff0-f573534cb391",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "fc7adadd-3e57-4f32-b314-7dd9f051ac23",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedUserName = "JOHANS",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM0ddvoGbbxR52uodQsLdU1joRdpexV/pgOMsFgDxiO00XZXtvHdSbrX9GP1c59weg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "2QB3XVNXYN3E3JKGLPF37UNUDS57MJC2",
-                            TwoFactorEnabled = false,
-                            UserName = "JohanS"
-                        },
-                        new
-                        {
-                            Id = "2a3691cd-2dcf-4850-a5f0-43f653fecc1a",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "590905f5-e623-4517-aa36-8b0b7e695aba",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedUserName = "JACOBW",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFBlLba4VSttsLkx9+TB27pTuVkUiCV15FQM/xB0oRJkfwh1T4NqzWsqV7FaOdJFnA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "S4LN2MR2XLOF2MAH2DALTCBZ6UMVJV22",
-                            TwoFactorEnabled = false,
-                            UserName = "JacobW"
-                        },
-                        new
-                        {
-                            Id = "25d150cf-9187-4a8b-9fba-301c1972ddee",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "93973063-9a1d-4cea-b5d0-c5ab965f575d",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedUserName = "MAXWIK",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBGCmYUXyJzdXobR+ULI0b0SAeG3JTJ3Tg/M/rRX+SfoKwV3JcHgx3XG5Lz+gLvqSA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "WHIMEAWPQ44OOY5IIDFFD4444W3VLH3G",
-                            TwoFactorEnabled = false,
-                            UserName = "MaxWik"
                         });
                 });
 
