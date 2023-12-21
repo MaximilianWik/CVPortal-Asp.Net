@@ -13,5 +13,13 @@ namespace CVPortalen.Controllers
         {
             return View();
         }
+        public IActionResult CVAnton()
+        {
+            return View();
+        }
+    
+
     }
+
+   
 }

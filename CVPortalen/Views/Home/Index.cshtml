@@ -32,9 +32,9 @@
 <div class="image-container">
     <div class="top-row">
         @* <img src="Anton-CV.jpg" alt="Image 1"> *@
-        <a asp-action="CVFilip" asp-controller="CVSida"> <img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 1"> </a>
+        <a asp-action="CVFilip" asp-controller="CVSida"><img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 1"> </a>
 
-        <img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 2">
+        <a asp-action="CVAnton" asp-controller="CVSIDA"><img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 2"></a>
         <img src="https://www.shutterstock.com/image-photo/woman-caucasian-hand-gesture-showing-260nw-1751922260.jpg" alt="Image 3">
     </div>
     <div class="bottom-row">
@@ -76,9 +76,10 @@
     </td>
     <td>Harmony Haven Initiatives</td>
     <td>
-        <a href="Anton_wikstrom_profil.HTML">Anton Lindborg</a>
+        <a class="navbar-dark" asp-area="" asp-action="ProfilAnton" asp-controller="Profiler">Anton Lindborg</a>
+
     </td>
-    <td><button class="read-more">Read More</button></td>
+    <td><button <a class="read-more">Read More</a></button></td>
     </tr>
     <tr>
         <td>
@@ -147,9 +148,7 @@
     <td>
         <a href="Jacob_Wahlström_profil.HTML">Jacob Wahlström</a>
     </td>
-    <td>
-        <a class="navbar-light" asp-area="" asp-action="ProjektJacob" asp-controller="Projektsida">Read more</a>
-    </td>
+    <td><button class="read-more">Read More</button></td>
     </tr>
 
 

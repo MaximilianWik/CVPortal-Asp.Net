@@ -13,5 +13,10 @@ namespace CVPortalen.Controllers
         {
             return View();
         }
+
+        public IActionResult ProfilAnton()
+        {
+            return View();
+        }
     }
 }
