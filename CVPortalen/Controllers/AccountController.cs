@@ -6,8 +6,8 @@ namespace CVPortalen.Controllers
 {
     public class AccountController : Controller
     {
-        private UserManager<Anvandare> userManager;
-        private SignInManager<Anvandare> signInManager;
+        private readonly UserManager<Anvandare> userManager;
+        private readonly SignInManager<Anvandare> signInManager;
 
         public AccountController(UserManager<Anvandare> userMngr, SignInManager<Anvandare> signInMngr)
         {
@@ -15,19 +15,18 @@ namespace CVPortalen.Controllers
             this.signInManager = signInMngr;
         }
 
-        [HttpGet]
-        public IActionResult LogIn(string returnURL = "")
-        {
-            LoginViewModel loginViewModel = new LoginViewModel();
-            return View(loginViewModel);
-        }
-
-
         //Vyn för användar registrering
         [HttpGet]
         public IActionResult Registrera()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult LogIn(string returnURL = "")
+        {
+            LoginViewModel loginViewModel = new LoginViewModel();
+            return View(loginViewModel);
         }
 
 
@@ -41,7 +40,7 @@ namespace CVPortalen.Controllers
                 anvandare.UserName = anvandarRegisterViewModel.AnvandarNamn;
 
                 var result = await userManager.CreateAsync(anvandare, anvandarRegisterViewModel.Losenord);
-                
+
 
                 if (result.Succeeded)
                 {
@@ -50,8 +49,39 @@ namespace CVPortalen.Controllers
                     
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
             }
             return View(anvandarRegisterViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LogIn(LoginViewModel loginViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(
+                    loginViewModel.AnvandarNamn,
+                    loginViewModel.Losenord,
+                    isPersistent: loginViewModel.rememberMe,
+                    lockoutOnFailure: false);
+                    
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Fel Användarnamn/Lösenord");
+                }
+            }
+            return View(loginViewModel);
         }
 
         //Logga ut användare

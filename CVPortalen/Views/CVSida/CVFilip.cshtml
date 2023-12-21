@@ -4,75 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Min CV</title>
-    <!-- Lägg till eventuella andra nödvändiga stilfiler eller skript här -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
 
         .cv-container {
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .experience-item {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .project-item {
+            margin-bottom: 10px;
         }
 
         .editable {
             border: 1px solid #ddd;
             padding: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             background-color: #f9f9f9;
         }
 
         .edit-button, .save-button {
-            padding: 5px 10px;
+            padding: 10px;
             margin: 5px;
             cursor: pointer;
         }
 
-        /* Lägg till ytterligare stilar efter behov */
+        .skills {
+            margin-top: 20px;
+        }
+
+        .skill {
+            margin-bottom: 10px;
+        }
+
+        .skill-name {
+            font-weight: bold;
+        }
+
+        .skill-bar {
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50;
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
     </style>
 </head>
 <body>
 
     <div class="cv-container">
-        <h2>Mitt CV</h2>
+        <h1>Filip Nydén</h1>
+        <h2>Webutvecklare</h2>
 
-        <div class="editable" contenteditable="false">
+        <div class="section">
             <h3>Personlig Information</h3>
-            <p><strong>Namn:</strong> John Doe</p>
-            <p><strong>Ålder:</strong> 30</p>
-            <p><strong>Stad:</strong> Anytown</p>
-
-            <!-- Lägg till fler personliga detaljer efter behov -->
+            <div class="editable" contenteditable="false" id="personal-info">
+                <p><strong>Namn:</strong>Filip Nydén</p>
+                <p><strong>Ålder:</strong> 22</p>
+                <p><strong>Stad:</strong> Stockholm</p>
+                
+                <!-- Lägg till fler personliga detaljer efter behov -->
+            </div>
+            <button class="edit-button" onclick="toggleEditable('personal-info')">Redigera</button>
         </div>
 
-        <div class="editable" contenteditable="false">
-            <h3>Utbildning</h3>
-            <p><strong>Examensår:</strong> 2020</p>
-            <p><strong>Examensinriktning:</strong> Datavetenskap</p>
-            <p><strong>Skola:</strong> Universitetet X</p>
-
-            <!-- Lägg till fler utbildningsdetaljer efter behov -->
+        <div class="section">
+            <h3>Erfarenhet</h3>
+            <div class="experience-item" contenteditable="false" id="experience">
+                <h4>Webutvecklare, ABC Company</h4>
+                <p><strong>Period:</strong> 2018 - Nutid</p>
+                <p>Arbetade med front-end och back-end utveckling.</p>
+            </div>
+            <!-- Lägg till fler erfarenhetsdetaljer efter behov -->
+            <button class="edit-button" onclick="toggleEditable('experience')">Redigera</button>
         </div>
 
-        <button class="edit-button" onclick="toggleEditable()">Redigera</button>
-        <button class="save-button" onclick="saveChanges()">Spara</button>
+        <div class="section">
+            <h3>Projekt</h3>
+            <div class="project-item">
+                <h4>Online Shopping Cart</h4>
+                <p>Utvecklade och underhöll en e-handelsplattform.</p>
+            </div>
+            <!-- Lägg till fler projektdetaljer efter behov -->
+        </div>
+
+        <!------------------------->
+
+        <div class="section skills" contenteditable="false" id="skills">
+            <h3>Kompetenser</h3>
+            <div class="skill">
+                <p class="skill-name">Webutveckling</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <p class="skill-name">HTML/CSS</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <!-- Lägg till fler kompetenser efter behov -->
+        </div>
+
+        <button class="edit-button" onclick="toggleEditable('skills')">Redigera</button>
     </div>
 
     <script>
-        function toggleEditable() {
-            var editableElements = document.querySelectorAll('.editable');
-            editableElements.forEach(function (element) {
-                element.contentEditable = !element.isContentEditable;
-            });
-        }
-
-        function saveChanges() {
-            // Lägg till kod för att spara ändringar (t.ex. skicka till server)
-            alert('Ändringar sparade!');
+        function toggleEditable(id) {
+            var editableElement = document.getElementById(id);
+            editableElement.contentEditable = !editableElement.isContentEditable;
         }
     </script>
 
 </body>
 </html>
+
+
+
+
 

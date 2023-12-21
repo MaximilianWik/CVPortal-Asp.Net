@@ -25,7 +25,7 @@ namespace CVPortalen.Controllers
 
         //Bara authorizeacde användare kan se viewen nedanför
 
-        //[Authorize]
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -43,10 +43,10 @@ namespace CVPortalen.Controllers
         }
 
         //Nedan kan behöva av-kommenteras vid senare tillfälle
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         //public IActionResult Error()
