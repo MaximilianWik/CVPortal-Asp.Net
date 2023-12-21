@@ -18,5 +18,10 @@ namespace CVPortalen.Controllers
         {
             return View();
         }
+
+        public IActionResult ProfilMax()
+        {
+            return View();
+        }
     }
 }

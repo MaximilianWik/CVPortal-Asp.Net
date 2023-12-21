@@ -17,6 +17,11 @@ namespace CVPortalen.Controllers
         {
             return View();
         }
+
+        public  IActionResult CVMax()
+        {
+            return View();
+        }
     
 
     }
