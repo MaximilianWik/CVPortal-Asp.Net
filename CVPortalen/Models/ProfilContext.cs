@@ -40,6 +40,7 @@ namespace CVPortalen.Models
             LockoutEnabled = true,
             AccessFailedCount = 0
         }
+        //Hejsan
         // Add more users as needed
         );  
 
