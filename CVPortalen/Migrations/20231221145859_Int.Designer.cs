@@ -4,6 +4,7 @@ using CVPortalen.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CVPortalen.Migrations
 {
     [DbContext(typeof(ProfilContext))]
-    partial class ProfilContextModelSnapshot : ModelSnapshot
+    [Migration("20231221145859_Int")]
+    partial class Int
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,11 +97,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "eeafdb89-38a4-4e6f-a3de-63b1491c0b86",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4ed9f6b7-7994-4996-8142-a4d9cd29b3fe",
+                            ConcurrencyStamp = "72647100-4b87-4487-afb3-10441cc4e945",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "FILIPNYDEN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOK39yxim+kFvluBlAmPpm84q3dKtxrwTFPEmXohC7UA5rvH5RouCui2fIeDyR2ClA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKLI8XkWfK2Gpzyasa1PL5Gy9/9R3PpRwUYTheg/cbi0obTpxX0plqXCFZks0GDIDg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "ZHC7O3BJZA6YHMG7J4LWDL7NW4VPWY3D",
                             TwoFactorEnabled = false,
@@ -108,11 +111,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "b3d78f9f-df9a-43e9-8a50-e1cca4bfb5d9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1a9188ac-074c-4097-8fdb-5d86569bce4e",
+                            ConcurrencyStamp = "270bb7f0-bc4f-4e03-aea0-102e62dea2e9",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "ANTONLIND",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI3TpPyaqjiUt2VYc4AeRnmPvHH2ayepYPYfSIOTGxaVpEANZ+tNLTzAPIHTAO4+uw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIZeCQwmG+uVOkf1dorcKiYLZAwS/FR0dQ/PqpN/ffj8wxr0smSKG9cPmzm511bmmg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3KSCKA2ZWKSZLFTU6VTN2U47BE2WEQRN",
                             TwoFactorEnabled = false,
@@ -122,11 +125,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "95140368-5cbe-46a2-8ff0-f573534cb391",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fc7adadd-3e57-4f32-b314-7dd9f051ac23",
+                            ConcurrencyStamp = "1485af37-4da5-412b-82e6-1191f35bd6c6",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "JOHANS",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM0ddvoGbbxR52uodQsLdU1joRdpexV/pgOMsFgDxiO00XZXtvHdSbrX9GP1c59weg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEKwsyO4oz+4yv8nQhkDeMwqEVTHKRm/QV410Qdr6+NRH0luBdQaCi8F7lmoAcelpw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "2QB3XVNXYN3E3JKGLPF37UNUDS57MJC2",
                             TwoFactorEnabled = false,
@@ -136,11 +139,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "2a3691cd-2dcf-4850-a5f0-43f653fecc1a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "590905f5-e623-4517-aa36-8b0b7e695aba",
+                            ConcurrencyStamp = "513e4251-cbc9-4f44-9e0e-826d50d227b0",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "JACOBW",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFBlLba4VSttsLkx9+TB27pTuVkUiCV15FQM/xB0oRJkfwh1T4NqzWsqV7FaOdJFnA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEJ9/FovgkrqT4iLORum3vyDJ5xApVm39njqo8ZEo807Kgj3tbtL2fYbOXLE5Q+hMA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "S4LN2MR2XLOF2MAH2DALTCBZ6UMVJV22",
                             TwoFactorEnabled = false,
@@ -150,11 +153,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "25d150cf-9187-4a8b-9fba-301c1972ddee",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "93973063-9a1d-4cea-b5d0-c5ab965f575d",
+                            ConcurrencyStamp = "a34e7d47-fd85-414f-a3fb-3e3b35eeaf2d",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "MAXWIK",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBGCmYUXyJzdXobR+ULI0b0SAeG3JTJ3Tg/M/rRX+SfoKwV3JcHgx3XG5Lz+gLvqSA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJKGC+JW8TQgtMl1lxzo0RLNJYXjmHjOHddfcV6RS6fyD0t38nyIeUmd2EPAkD+IAQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "WHIMEAWPQ44OOY5IIDFFD4444W3VLH3G",
                             TwoFactorEnabled = false,
@@ -198,14 +201,16 @@ namespace CVPortalen.Migrations
                             CVId = 1,
                             Arbetsplats = "TestCO",
                             Beskrivning = "Hej",
-                            Titel = "Test1"
+                            Titel = "Test1",
+                            UserId = "eeafdb89-38a4-4e6f-a3de-63b1491c0b86"
                         },
                         new
                         {
                             CVId = 2,
                             Arbetsplats = "TestCO",
                             Beskrivning = "Hej",
-                            Titel = "Test2"
+                            Titel = "Test2",
+                            UserId = "eeafdb89-38a4-4e6f-a3de-63b1491c0b86"
                         });
                 });
 
@@ -227,41 +232,6 @@ namespace CVPortalen.Migrations
                     b.HasKey("MeddelandeId");
 
                     b.ToTable("meddelande");
-                });
-
-            modelBuilder.Entity("CVPortalen.Models.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ReceiverId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("SenderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("SentAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReceiverId");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("CVPortalen.Models.Profil", b =>
@@ -463,6 +433,17 @@ namespace CVPortalen.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CVPortalen.Models.CV", b =>
+                {
+                    b.HasOne("CVPortalen.Models.Anvandare", "Anvandare")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Anvandare");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -512,11 +493,6 @@ namespace CVPortalen.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CVPortalen.Models.Anvandare", b =>
-                {
-                    b.Navigation("SentMessages");
                 });
 #pragma warning restore 612, 618
         }

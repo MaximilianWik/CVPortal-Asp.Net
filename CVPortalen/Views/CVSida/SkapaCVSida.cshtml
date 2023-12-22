@@ -1,0 +1,24 @@
+﻿@model CVPortalen.Models.CV
+@{
+}
+<h1>Your CV</h1>
+
+@if (Model == null)
+{
+    <p>No CV created yet.</p>
+    <a asp-action="SkapaCV" asp-controller="CVSida">Skapa CV</a>
+}
+else
+{
+    <p><strong>Titel:</strong> @Model.Titel</p>
+    <p><strong>Arbetsplats:</strong> @Model.Arbetsplats</p>
+    <p><strong>Beskrivning:</strong> @Model.Beskrivning</p>
+    <button onclick="editCV()">Redigera</button>
+}
+
+<script>
+    function editCV() {
+        // Redirect to the edit CV page or show a modal
+        window.location.href = '/CV/EditCV';
+    }
+</script>
