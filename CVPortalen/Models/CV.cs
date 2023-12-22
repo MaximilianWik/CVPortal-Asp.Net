@@ -15,9 +15,7 @@ namespace CVPortalen.Models
 
         public string Beskrivning { get; set; }
 
-        [ForeignKey(nameof(Anvandare))]
-        public string UserId { get; set; }
-
-        public virtual Anvandare Anvandare { get; set; }
+        //[ForeignKey(nameof(UserManager<Anvandare>))]
+        //public string Anvandare { get; set; }
     }
 }
