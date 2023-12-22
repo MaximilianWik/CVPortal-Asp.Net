@@ -21,7 +21,7 @@ namespace CVPortalen.Models
 
         public DbSet<Message> Messages { get; set; }
 
-
+        //Meooowowwww
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
