@@ -4,6 +4,7 @@ using CVPortalen.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CVPortalen.Migrations
 {
     [DbContext(typeof(ProfilContext))]
-    partial class ProfilContextModelSnapshot : ModelSnapshot
+    [Migration("20231222121547_fitta")]
+    partial class fitta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,11 +97,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "eeafdb89-38a4-4e6f-a3de-63b1491c0b86",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b5809c45-2a87-4e49-bad8-d15ead81c55d",
+                            ConcurrencyStamp = "85d1a0e2-204c-4765-ae79-b94df98e598b",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "FILIPNYDEN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDKBnzlSW6RDcBr8cTXWY3YVG3oc8SFXogRtfqJ2ZRzGGKiCxR+pK/ZMN62xf6megg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELFXt2i8sD63A5fjcGoFqoG1gMUODkjCtucnmAe3poLK5fBNfuRqvDICjKxPIG2JLA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "ZHC7O3BJZA6YHMG7J4LWDL7NW4VPWY3D",
                             TwoFactorEnabled = false,
@@ -108,11 +111,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "b3d78f9f-df9a-43e9-8a50-e1cca4bfb5d9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ccf1a123-7134-4ca2-9487-aa497f680489",
+                            ConcurrencyStamp = "8ae51814-6711-4a1f-8adb-2872ed1bfb3b",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "ANTONLIND",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIqWQF1KFR14shSIzvwTbQOojldqNLNTjHqsO/YL5vfW97u6Tel74RhHMqktFTn02w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKI6y+mODaLVByTbsaRYh6LzlOpOkx6gCQw0R5/ykE8nD0Pccm4b+SlxcmqtbdZAVQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3KSCKA2ZWKSZLFTU6VTN2U47BE2WEQRN",
                             TwoFactorEnabled = false,
@@ -122,11 +125,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "95140368-5cbe-46a2-8ff0-f573534cb391",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6ca3f2e7-34a1-4037-aa32-8293f4566b82",
+                            ConcurrencyStamp = "7905fbf9-64ee-4bc9-b012-935ba2b03aa6",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "JOHANS",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKZ333LBmH0cyOumHWh1BC/Xbq2ZE1wKE4MObAEbkgpR9RONnBwOB4HDUwrJkVu/Rw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAYH1iX0BpmE8qd62ONZg0Fr+8VtncmD3e+ai4mnS/GXCK0gmRHTCftMYc7uKhgOxA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "2QB3XVNXYN3E3JKGLPF37UNUDS57MJC2",
                             TwoFactorEnabled = false,
@@ -136,11 +139,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "2a3691cd-2dcf-4850-a5f0-43f653fecc1a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "241560a4-4b9b-48df-b093-b6d4c517c09a",
+                            ConcurrencyStamp = "a638e4e3-af84-4191-8080-cfe5f28c8687",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "JACOBW",
-                            PasswordHash = "AQAAAAIAAYagAAAAELg2Pu+oWKDWBp4x4VOM5Vt/i8RPEbjw8nNQiUXMQYIfr+wG+BpwUBbxLw2MeyzRmw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJfRTRJnXAVgnbu+ywyDyZx52/gYU6jlf+DP1/EAoWW56kFg5MUbDzQ7kNmYniS1lg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "S4LN2MR2XLOF2MAH2DALTCBZ6UMVJV22",
                             TwoFactorEnabled = false,
@@ -150,11 +153,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "25d150cf-9187-4a8b-9fba-301c1972ddee",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "107dba7a-17b0-41c7-b44a-2aac9eb8decb",
+                            ConcurrencyStamp = "beba9b23-7015-4010-8edc-8e2efdde0cc6",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "MAXWIK",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGw4oIKxp65LIdO/0iaYMGGeSMPE3DtqNq88kprorsfkq3wlytLz7JguVL3GO+vBRw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGt/LbGtKVN9u3CW0apl47zpztdV66+q8nkml/qu9ZG7b4SLqOH50e/zofOLlyWCvQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "WHIMEAWPQ44OOY5IIDFFD4444W3VLH3G",
                             TwoFactorEnabled = false,
