@@ -11,5 +11,10 @@ namespace CVPortalen.Models
         {
             throw new NotImplementedException();
         }
+
+        public static implicit operator Anvandare(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

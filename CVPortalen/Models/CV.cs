@@ -6,6 +6,7 @@ namespace CVPortalen.Models
 {
     public class CV
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CVId { get; set; }
         [Required(ErrorMessage = "Titel är obligatoriskt")]
@@ -15,7 +16,7 @@ namespace CVPortalen.Models
         [Required(ErrorMessage = "Beskrivning är obligatoriskt")]
         public string Beskrivning { get; set; }
 
-        [ForeignKey(nameof(Anvandare))]
-        public virtual Anvandare user { get; set; }
+        //[ForeignKey(nameof(Anvandare))]
+        //public virtual Anvandare CreatedByUser { get; set; }
     }
 }

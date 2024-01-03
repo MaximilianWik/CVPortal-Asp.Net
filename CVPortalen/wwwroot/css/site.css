@@ -20,3 +20,25 @@ html {
 body {
   margin-bottom: 60px;
 }
+.image-container {
+    margin: 20px 0; /* Justera utrymmet efter behov */
+    display: flex;
+    justify-content: center;
+}
+
+.image-box {
+    border: 2px solid #3498db; /* Färg på gränsen */
+    border-radius: 8px; /* Rundade hörn för mjukare utseende */
+    overflow: hidden; /* För att hantera bildens storlek inuti boxen */
+}
+
+.image-link {
+    text-decoration: none; /* Ta bort understrykning från länken */
+    color: #333; /* Färg på länken, ändra efter behov */
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+    display: block; /* Ta bort extra mellanrum under bilden */
+}

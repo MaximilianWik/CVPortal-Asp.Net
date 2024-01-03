@@ -1,0 +1,30 @@
+﻿@model CV
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2>@Model.Titel</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h5 class="text-muted">Arbetsplats:</h5>
+                        <p class="font-weight-bold">@Model.Arbetsplats</p>
+                    </div>
+                    <div class="mb-3">
+                        <h5 class="text-muted">Beskrivning:</h5>
+                        <p>@Model.Beskrivning</p>
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-muted text-center">
+                    <a asp-action="CVStart" asp-controller="CVSida" class="btn btn-primary">Tillbaka till CV-lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

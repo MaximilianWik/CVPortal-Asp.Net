@@ -1,32 +1,80 @@
-﻿
+﻿@model List<CV>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CV Portal - Alla CV</title>
-</head>
-<body>
-    <h1>CV Portal - Alla CV</h1>
+<h2>CV-lista</h2>
 
-    @if (Model.Any())
-    {
-    <ul>
-        @foreach (var cv in Model)
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="col">Titel</th>
+                <th class="col">Arbetsplats</th>
+                <th class="col">Beskrivning</th>
+                <th class="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cv in Model)
             {
-        <li>
-            <strong>@cv.Titel</strong>
-            <p>Arbetsplats: @cv.Arbetsplats</p>
-            <p>Beskrivning: @cv.Beskrivning</p>
-            <p>Skapad av: @cv.Anvandare</p>
-            <a href="/CV/Edit/@cv.CVId">Redigera</a>
-        </li>
+                <tr>
+                    <td class="col">
+                        <a asp-action="Details" asp-controller="CVSida" asp-route-id="@cv.CVId">@cv.Titel</a>
+                    </td>
+                    <td class="col">@cv.Arbetsplats</td>
+                    <td class="col">@TruncateDescription(cv.Beskrivning, 50)</td>
+                    <td class="col">
+                        <input type="checkbox" name="selectedCVs" value="@cv.CVId" />
+                    </td>
+                </tr>
             }
-    </ul>
-    }
-    else
+        </tbody>
+    </table>
+</div>
+
+<a asp-action="Create" asp-controller="CVSida" class="btn btn-primary">Skapa ett CV</a>
+<button id="deleteSelected" class="btn btn-danger">Ta bort markerade CV</button>
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#deleteSelected").click(function () {
+                var selectedCVs = [];
+                $('input[name="selectedCVs"]:checked').each(function () {
+                    selectedCVs.push($(this).val());
+                });
+
+                if (selectedCVs.length > 0) {
+                    // Skicka en AJAX-förfrågan för att ta bort markerade CV
+                    $.ajax({
+                        url: '/CVSida/DeleteSelectedCVs',
+                        type: 'POST',
+                        data: { cvIds: selectedCVs },
+                        success: function (result) {
+                            // Uppdatera vyn eller vidta andra åtgärder vid behov
+                            location.reload();
+                        },
+                        error: function (error) {
+                            console.error("Error:", error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+@functions {
+    public string TruncateDescription(string description, int maxLength)
     {
-    <p>Inga CV hittades. <a href="/CV/Create">Skapa ett nytt CV</a></p>
+        if (description.Length <= maxLength)
+        {
+            return description;
+        }
+        else
+        {
+            // Trunkera beskrivningen och lägg till ellipsis
+            return description.Substring(0, maxLength) + "...";
+        }
     }
-</body>
-</html>
+}
+
 

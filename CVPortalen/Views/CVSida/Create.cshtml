@@ -1,0 +1,25 @@
+﻿@model CV
+
+<h2>Skapa nytt CV</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Titel"></label>
+        <input asp-for="Titel" class="form-control" />
+        <span asp-validation-for="Titel" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Arbetsplats"></label>
+        <input asp-for="Arbetsplats" class="form-control" />
+        <span asp-validation-for="Arbetsplats" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Beskrivning"></label>
+        <textarea asp-for="Beskrivning" class="form-control"></textarea>
+        <span asp-validation-for="Beskrivning" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Spara CV</button>
+    </div>
+</form>
+

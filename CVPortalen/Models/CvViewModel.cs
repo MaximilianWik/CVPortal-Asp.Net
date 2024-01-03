@@ -3,7 +3,6 @@
     public class CvViewModel
     {
         
-        public string AnvandarNamn { get; set; }
 
 
     }

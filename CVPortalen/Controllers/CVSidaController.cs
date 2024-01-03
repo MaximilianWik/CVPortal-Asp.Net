@@ -1,4 +1,5 @@
-﻿using CVPortalen.Models;
+﻿using System.Security.Claims;
+using CVPortalen.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,69 +10,71 @@ namespace CVPortalen.Controllers
     //[Authorize]
     public class CVSidaController : Controller
     {
-        private readonly UserManager<Anvandare> _userManager;
-        private readonly ProfilContext _context;
+
+        private ProfilContext _context;
 
         public CVSidaController(ProfilContext context)
         {
             _context = context;
-            this._userManager = _userManager;
         }
-        public IActionResult Index()
+
+        public IActionResult CVStart()
+        {
+            List<CV> allCVs = _context.cVs.ToList();
+            return View(allCVs);
+        }
+
+
+        // Visa formulär för att skapa nytt CV
+        [HttpGet]
+        public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult CVFilip()
+        [HttpPost]
+        public IActionResult Create(CV cv)
         {
-            return View();
-        }
-        public IActionResult CVAnton()
-        {
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.cVs.Add(cv);
+                    _context.SaveChanges();
 
-        public  IActionResult CVMax()
-        {
-            return View();
-        }
+                    return RedirectToAction("CVStart");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Ett fel inträffade vid skapandet av CV: " + ex.Message);
+                }
+            }
 
-        public IActionResult CVStart() 
-        {
-            //var userID = _userManager.GetUserAsync(User).Result;
-            
-            //var userCVs = _context.cVs.Where(cv => cv.Anvandare == userID).ToList();
-
-            return View(CVStart);
-        }
-
-        public IActionResult CVCreate(int cvId)
-        {
-            var cv = _context.cVs.Find(cvId);
             return View(cv);
         }
 
         [HttpPost]
-        public IActionResult SaveCV(CV cv)
+        public IActionResult DeleteSelectedCVs(List<int> cvIds)
         {
-            if (ModelState.IsValid)
+            try
             {
-                if (cv.CVId == 0)
-                {
-                    // Nytt CV
-                    _context.cVs.Add(cv);
-                }
-                else
-                {
-                    // Redigera befintligt CV
-                    _context.Entry(cv).State = EntityState.Modified;
-                }
-
+                // Hämta och ta bort markerade CV-objekt från databasen
+                var selectedCVs = _context.cVs.Where(cv => cvIds.Contains(cv.CVId)).ToList();
+                _context.cVs.RemoveRange(selectedCVs);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View("Edit", cv);
+                return Json(new { success = true, message = "CV-objekt borttagna framgångsrikt." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Ett fel uppstod vid borttagning av CV-objekt: " + ex.Message });
+            }
+        }
+
+        public IActionResult Details(int id)
+        {
+            var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
+            return View(cv);
         }
     }
 }
