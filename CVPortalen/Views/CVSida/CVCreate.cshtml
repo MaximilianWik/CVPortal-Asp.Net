@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model CV
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CV Portal - Skapa/Redigera CV</title>
+</head>
+<body>
+    <h1>CV Portal - Skapa/Redigera CV</h1>
+
+    @using (Html.BeginForm("SaveCV", "CV", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.CVId)
+
+        <label for="Titel">Titel:</label>
+        @Html.TextBoxFor(model => model.Titel)
+
+        <label for="Arbetsplats">Arbetsplats:</label>
+        @Html.TextBoxFor(model => model.Arbetsplats)
+
+        <label for="Beskrivning">Beskrivning:</label>
+        @Html.TextAreaFor(model => model.Beskrivning)
+
+        <button type="submit">Spara CV</button>
+    }
+</body>
+</html>

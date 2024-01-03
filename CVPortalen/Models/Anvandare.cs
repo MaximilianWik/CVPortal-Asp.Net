@@ -6,5 +6,10 @@ namespace CVPortalen.Models
     {
         // property för meddelanden
         public virtual ICollection<Message> SentMessages { get; set; }
+
+        public static implicit operator string?(Anvandare? v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

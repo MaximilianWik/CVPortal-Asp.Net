@@ -23,6 +23,7 @@ namespace CVPortalen.Controllers
         [Authorize]
         public IActionResult Index()
         {
+
             var currentUser = _userManager.GetUserAsync(User).Result;
 
             // Fetch messages for the current user
@@ -33,11 +34,14 @@ namespace CVPortalen.Controllers
             return View(messages);
         }
 
-        [Authorize]
-        public IActionResult Index2()
-        {
-            return View();
-        }
+
+
+
+        //[Authorize]
+        //public IActionResult Index2()
+        //{
+        //    return View();
+        //}
 
         [HttpGet]
         public IActionResult ProfilFilip()
