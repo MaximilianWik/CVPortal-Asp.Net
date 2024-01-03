@@ -35,7 +35,7 @@ namespace CVPortalen.Models
             modelBuilder.Entity<Anvandare>().HasData(
                 new Anvandare
                 {
-                    Id = "filipnyden", // Replace with an actual user ID
+                    Id = "eeafdb89-38a4-4e6f-a3de-63b1491c0b86", // Replace with an actual user ID
                     UserName = "filipnyden",
                     NormalizedUserName = "FILIPNYDEN",
                     Email = null,
@@ -54,7 +54,7 @@ namespace CVPortalen.Models
 
                  new Anvandare
                  {
-                     Id = "AntonLind", // Replace with an actual user ID
+                     Id = "b3d78f9f-df9a-43e9-8a50-e1cca4bfb5d9", // Replace with an actual user ID
                      UserName = "AntonLind",
                      NormalizedUserName = "ANTONLIND",
                      Email = null,
@@ -74,7 +74,7 @@ namespace CVPortalen.Models
 
             new Anvandare
             {
-                Id = "JohanS", // Replace with an actual user ID
+                Id = "95140368-5cbe-46a2-8ff0-f573534cb391", // Replace with an actual user ID
                 UserName = "JohanS",
                 NormalizedUserName = "JOHANS",
                 Email = null,
@@ -94,7 +94,7 @@ namespace CVPortalen.Models
 
             new Anvandare
             {
-                Id = "JacobW", // Replace with an actual user ID
+                Id = "2a3691cd-2dcf-4850-a5f0-43f653fecc1a", // Replace with an actual user ID
                 UserName = "JacobW",
                 NormalizedUserName = "JACOBW",
                 Email = null,
@@ -114,7 +114,7 @@ namespace CVPortalen.Models
 
             new Anvandare
             {
-                Id = "MaxWik", // Replace with an actual user ID
+                Id = "25d150cf-9187-4a8b-9fba-301c1972ddee", // Replace with an actual user ID
                 UserName = "MaxWik",
                 NormalizedUserName = "MAXWIK",
                 Email = null,
