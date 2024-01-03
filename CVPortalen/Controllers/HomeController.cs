@@ -20,7 +20,7 @@ namespace CVPortalen.Controllers
 
 
 
-        //[Authorize]
+        [Authorize]
         public IActionResult Index()
         {
             var currentUser = _userManager.GetUserAsync(User).Result;

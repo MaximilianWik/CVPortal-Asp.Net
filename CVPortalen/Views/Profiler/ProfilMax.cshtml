@@ -45,8 +45,44 @@
             padding: 8px;
         }
 
+        .message-form-container {
+            position: fixed;
+            top: 20px; /* Adjust the top value as needed */
+            right: 20px; /* Adjust the right value as needed */
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
         
     </style>
+    @* Meddelande *@
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-controller="Message" asp-action="Create" method="post">
+            <div class="form-group">
+                <label for="ReceiverId">Mottagar Användarnamn:</label>
+                <input type="text" name="ReceiverId" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="Content">Meddelande innehåll:</label>
+                <textarea name="Content" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Skicka</button>
+        </form>
+    }
+
+    @* Logga ut knapp *@
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form method="post" asp-controller="Account" asp-action="Loggaut">
+
+            <h2>Du är loggad in som @User.Identity.Name</h2>
+            <input type="submit" value="Logga ut" />
+        </form>
+    }
 </head>
 <body>
 
