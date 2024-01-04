@@ -29,29 +29,53 @@ namespace CVPortalen.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            CV cV = new CV();
+            return View(cV);
         }
 
         [HttpPost]
-        public IActionResult Create(CV cv)
+        public IActionResult Create(CV cV)
         {
-            if (ModelState.IsValid)
+            Console.WriteLine("Inside Create POST method");
+
+            if (!ModelState.IsValid)
             {
                 try
                 {
-                    _context.cVs.Add(cv);
-                    _context.SaveChanges();
+                    string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    Console.WriteLine("Current UserId: " + currentUserId);
 
-                    return RedirectToAction("CVStart");
+                    Anvandare currentUser = _context.Users.FirstOrDefault(u => u.Id == currentUserId);
+                    Console.WriteLine("Current User: " + (currentUser != null ? currentUser.UserName : "null"));
+
+                    if (currentUser != null)
+                    {
+                        cV.UserId = currentUserId; // Tilldela användar-ID direkt till CV-objektet
+
+                        _context.cVs.Add(cV);
+                        _context.SaveChanges();
+
+                        Console.WriteLine("CV saved successfully.");
+
+                        return RedirectToAction("CVStart");
+                    }
                 }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", "Ett fel inträffade vid skapandet av CV: " + ex.Message);
+                    Console.WriteLine("Exception: " + ex.Message);
                 }
             }
 
-            return View(cv);
+            Console.WriteLine("ModelState is not valid or user is null.");
+
+            return View(cV);
         }
+
+
+
+
+
 
         [HttpPost]
         public IActionResult DeleteSelectedCVs(List<int> cvIds)

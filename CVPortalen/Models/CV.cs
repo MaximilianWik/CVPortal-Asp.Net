@@ -16,7 +16,8 @@ namespace CVPortalen.Models
         [Required(ErrorMessage = "Beskrivning är obligatoriskt")]
         public string Beskrivning { get; set; }
 
-        //[ForeignKey(nameof(Anvandare))]
-        //public virtual Anvandare CreatedByUser { get; set; }
+        [ForeignKey(nameof(Anvandare))]
+        public string UserId { get; set; }
+        public virtual Anvandare User { get; set; }
     }
 }

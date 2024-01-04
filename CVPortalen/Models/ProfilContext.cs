@@ -149,6 +149,12 @@ namespace CVPortalen.Models
                 .OnDelete(DeleteBehavior.Restrict);
 
 
+            modelBuilder.Entity<Anvandare>()
+    .HasOne(a => a.CV)
+    .WithOne(cv => cv.User)
+    .HasForeignKey<CV>(cv => cv.UserId)
+    .OnDelete(DeleteBehavior.Restrict);
+
 
 
 
