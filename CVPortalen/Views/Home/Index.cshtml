@@ -20,22 +20,6 @@
     <h1>Home Page</h1>
 </div>
 
-@* Visar meddelanden
- *@
- <h2>Dina Meddelanden</h2>
-@if (Model.Any())
-{
-    <ul>
-        @foreach (var message in Model)
-        {
-            <li>@message.Content</li>
-        }
-    </ul>
-}
-else
-{
-    <p>Inga meddelanden att visa.</p>
-}
 
 
 <div class="image-container">

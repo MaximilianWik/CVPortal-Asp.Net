@@ -22,6 +22,8 @@ namespace CVPortalen.Controllers
             return View();
         }
 
+
+
         [HttpGet]
         public IActionResult LogIn(string returnURL = "")
         {
@@ -93,4 +95,6 @@ namespace CVPortalen.Controllers
         }
 
     }
+
+        
 }
