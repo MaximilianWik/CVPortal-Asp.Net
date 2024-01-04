@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CVPortalen.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CVPortalen.Controllers
 {
@@ -9,7 +10,7 @@ namespace CVPortalen.Controllers
             return View();
         }
 
-        public IActionResult ProfilFilip() 
+        public IActionResult ProfilFilip()
         {
             return View();
         }
@@ -23,5 +24,36 @@ namespace CVPortalen.Controllers
         {
             return View();
         }
+    }
+
+    public class ProfileController : Controller
+    {
+        public IActionResult Index()
+        {
+            // Retrieve user profile information (you may replace this with your actual logic)
+            var userProfile = GetCurrentUserProfile(); // Implement this method to get the user's profile
+
+            if (userProfile != null)
+            {
+                return View(userProfile);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        private Anvandare GetCurrentUserProfile()
+        {
+            // Implement this method to get the user's profile based on the currently logged-in user
+            // You can use your DbContext or any other method to retrieve the user's profile
+            // For simplicity, this example returns a hardcoded profile
+            return new Anvandare
+            {
+            };
+
+
+        }
+
     }
 }
