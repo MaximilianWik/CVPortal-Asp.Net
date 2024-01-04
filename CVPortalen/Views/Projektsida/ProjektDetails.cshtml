@@ -1,0 +1,63 @@
+﻿@using System.Security.Claims
+@model CVPortalen.Models.Projekt
+
+<h2>Project Details</h2>
+
+<!-- Visa projektdetaljer -->
+<div>
+    <h3>@Model.ProjektName</h3>
+    <p>Year: @Model.Artal</p>
+    <p>Information: @Model.Infromation</p>
+    <p>Creator: <a asp-action="ProfilAnton" asp-controller="Profiler" asp-route-id="@Model.User.Id">@Model.User.UserName</a></p>
+</div>
+
+<!-- Lägg till en lista för att visa deltagarna -->
+<div>
+    <h4>Deltagare:</h4>
+    <ul id="deltagare-list">
+        @foreach (var deltagare in Model.Deltagare)
+        {
+            <li>@deltagare.UserName</li>
+        }
+    </ul>
+</div>
+
+<!-- Lägg till knappen för att lämna projektet -->
+@if (User.Identity.IsAuthenticated && Model.Deltagare.Any(d => d.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)))
+{
+    <button onclick="leaveProject(@Model.ProjektId)" class="btn btn-danger">Leave Project</button>
+}
+
+@section scripts {
+    <script>
+        // Här är din JavaScript-kod för AJAX och uppdatering av deltagarlistan
+        function leaveProject(projectId) {
+            $.ajax({
+                url: '@Url.Action("LeaveProject", "Projektsida")',
+                type: 'POST',
+                data: { projectId: projectId },
+                success: function (result) {
+                    alert(result.message);
+                    if (result.success) {
+                        // Uppdatera sidan med de nya deltagarna
+                        updateDeltagareList(result.deltagare);
+                    }
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
+        function updateDeltagareList(deltagare) {
+            var deltagareList = $("#deltagare-list");
+            deltagareList.empty();
+
+            deltagare.forEach(function (username) {
+                deltagareList.append('<li>' + username + '</li>');
+            });
+        }
+    </script>
+}
+
+

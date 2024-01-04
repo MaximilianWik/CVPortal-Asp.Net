@@ -9,6 +9,8 @@ namespace CVPortalen.Models
 
         public virtual CV CV { get; set; }
 
+        public virtual ICollection<Projekt> projekt { get; set; }
+
 
         public static implicit operator string?(Anvandare? v)
         {

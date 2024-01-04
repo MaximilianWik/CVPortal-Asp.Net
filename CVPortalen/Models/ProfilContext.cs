@@ -150,10 +150,29 @@ namespace CVPortalen.Models
 
 
             modelBuilder.Entity<Anvandare>()
-    .HasOne(a => a.CV)
-    .WithOne(cv => cv.User)
-    .HasForeignKey<CV>(cv => cv.UserId)
-    .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(a => a.CV)
+                .WithOne(cv => cv.User)
+                .HasForeignKey<CV>(cv => cv.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Anvandare>()
+                .HasMany(a => a.projekt)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //modelBuilder.Entity<Projekt>()
+            //.HasMany(p => p.Deltagare)
+            //.WithOne(d => d.Projekt)
+            //.HasForeignKey(d => d.ProjektId)
+            //.OnDelete(DeleteBehavior.Restrict); // Ändrad inställning här
+
+
+
+
+
+
+
 
 
 

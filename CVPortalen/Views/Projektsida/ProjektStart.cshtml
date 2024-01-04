@@ -1,0 +1,65 @@
+﻿@using System.Security.Claims
+@model List<Projekt>
+
+<h2>Projects</h2>
+
+<!-- Lägg till en länk för att skapa ett projekt -->
+<a asp-action="CreateProjekt" asp-controller="Projektsida" class="btn btn-primary">Create Project</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Information</th>
+            <th>Creator</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>@project.ProjektName</td>
+                <td>@project.Artal</td>
+                <td>@project.Infromation</td>
+                <td>
+                    <a asp-action="ProfilAnton" asp-controller="Profiler" asp-route-id="@project.User.Id">@project.User.UserName</a>
+                </td>
+                <td>
+                    <a asp-action="ProjektDetails" asp-controller="Projektsida" asp-route-id="@project.ProjektId" class="btn btn-primary">Details</a>
+                    @if (User.Identity.IsAuthenticated && project.User.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))
+                    {
+                        <a href="#" onclick="joinProject(@project.ProjektId)" class="btn btn-success">Join Project</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        function joinProject(projectId) {
+            // Implementera logiken för att gå med i projektet här med AJAX-förfrågan
+            $.ajax({
+                url: '@Url.Action("JoinProjekt", "Projektsida")',
+                type: 'POST',
+                data: { projectId: projectId },
+                success: function (result) {
+                    // Uppdatera vyn eller vidta andra åtgärder vid behov
+                    alert(result.message);
+                    if (result.success) {
+                        // Uppdatera vyn, exempelvis genom att ladda om sidan
+                        location.reload();
+                    }
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+    </script>
+}
+
+
