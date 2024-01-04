@@ -4,6 +4,7 @@ using CVPortalen.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CVPortalen.Migrations
 {
     [DbContext(typeof(ProfilContext))]
-    partial class ProfilContextModelSnapshot : ModelSnapshot
+    [Migration("20240104121730_migrat")]
+    partial class migrat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,9 +70,6 @@ namespace CVPortalen.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ProjektId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -90,8 +90,6 @@ namespace CVPortalen.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("ProjektId");
-
                     b.ToTable("AspNetUsers", (string)null);
 
                     b.HasData(
@@ -99,11 +97,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "eeafdb89-38a4-4e6f-a3de-63b1491c0b86",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e2b1913d-fc56-448d-84b6-4cd047f05950",
+                            ConcurrencyStamp = "1e024f2d-6b14-434b-bae6-8db01ee240a9",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "FILIPNYDEN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAq4q7E7NmCKEddFr5A4N6twDAoRf9P626TAQE0LV0dlVRt8O/I70nHsiGDRPjrRkw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB9ARG0WebUNAh7R3QFXglbJh297btxtXs7vhacdlCjkxZHr8mMp31qpxpnAf7eXwA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "ZHC7O3BJZA6YHMG7J4LWDL7NW4VPWY3D",
                             TwoFactorEnabled = false,
@@ -113,11 +111,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "b3d78f9f-df9a-43e9-8a50-e1cca4bfb5d9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "38dddca8-6f32-4e16-8739-66dd8d63cfba",
+                            ConcurrencyStamp = "199b372d-903a-4889-983c-99af808cf86c",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "ANTONLIND",
-                            PasswordHash = "AQAAAAIAAYagAAAAELX/XFR3g4sYF7hY4muOP75/bqIppCBy7FlTSI0A5vAcna1ffCIXyfxVVmBCJlNyDA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPQ/NpKjEToCGywOcseJkrZkbPSvRifjmqOK55ZRgBMcv0QN5Qsw7T4OMM07kV3rhA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3KSCKA2ZWKSZLFTU6VTN2U47BE2WEQRN",
                             TwoFactorEnabled = false,
@@ -127,11 +125,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "95140368-5cbe-46a2-8ff0-f573534cb391",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d4d044f5-83fc-4800-9cc3-93cf193cf207",
+                            ConcurrencyStamp = "ae5c5b68-83c5-40a7-aae0-7183675dd39b",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "JOHANS",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB5cMXgsxns3pT3PEEiITdJ+whJdgLhVxlr/xEYNm8C/HafDaeJ17H22GJL1ylvkKw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGv431VKUDzElS1BEorUVj94KPFc6vj37PDhRgXEFXYevhuhWcOvqqfUzEByLpp50g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "2QB3XVNXYN3E3JKGLPF37UNUDS57MJC2",
                             TwoFactorEnabled = false,
@@ -141,11 +139,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "2a3691cd-2dcf-4850-a5f0-43f653fecc1a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9b5717da-5d12-4efb-a0c0-9d8f2fe5a8eb",
+                            ConcurrencyStamp = "bcaffc02-87a5-42a0-bb58-3bda4920a75c",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "JACOBW",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDKwm/c3sKbYRrjj4cYofw5Vl/gBEkJ07vRAEXOlPW0ZcrteuXU84Zl8fbaZ444V6g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELL8rW7j4/BsEe4gk2AZC0urvNndfwFN4xh56EPfQ/bz8P84ocEnqrMr1SpzRrIORA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "S4LN2MR2XLOF2MAH2DALTCBZ6UMVJV22",
                             TwoFactorEnabled = false,
@@ -155,11 +153,11 @@ namespace CVPortalen.Migrations
                         {
                             Id = "25d150cf-9187-4a8b-9fba-301c1972ddee",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f27a826-331e-46e1-9b4b-3a91fd3f2203",
+                            ConcurrencyStamp = "7f5c333d-9429-4455-a644-67e579b61534",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedUserName = "MAXWIK",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKl1Ws7V8pQR7jio6f5T3XBFxML6ycKJ0UC/sNDvFfGG0q7nOY8qkTrRcnme4/VcUw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEA78X2TotHgCuUBrRCoSS0xDk8KX+Ju9wN61tOjg5+tv3WMHcA99qkhiJ3sd4ugy3w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "WHIMEAWPQ44OOY5IIDFFD4444W3VLH3G",
                             TwoFactorEnabled = false,
@@ -321,7 +319,8 @@ namespace CVPortalen.Migrations
 
                     b.HasKey("ProjektId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("projekt");
                 });
@@ -459,13 +458,6 @@ namespace CVPortalen.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CVPortalen.Models.Anvandare", b =>
-                {
-                    b.HasOne("CVPortalen.Models.Projekt", null)
-                        .WithMany("Deltagare")
-                        .HasForeignKey("ProjektId");
-                });
-
             modelBuilder.Entity("CVPortalen.Models.CV", b =>
                 {
                     b.HasOne("CVPortalen.Models.Anvandare", "User")
@@ -499,9 +491,9 @@ namespace CVPortalen.Migrations
             modelBuilder.Entity("CVPortalen.Models.Projekt", b =>
                 {
                     b.HasOne("CVPortalen.Models.Anvandare", "User")
-                        .WithMany("projekt")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithOne("Projekt")
+                        .HasForeignKey("CVPortalen.Models.Projekt", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -563,14 +555,10 @@ namespace CVPortalen.Migrations
                     b.Navigation("CV")
                         .IsRequired();
 
+                    b.Navigation("Projekt")
+                        .IsRequired();
+
                     b.Navigation("SentMessages");
-
-                    b.Navigation("projekt");
-                });
-
-            modelBuilder.Entity("CVPortalen.Models.Projekt", b =>
-                {
-                    b.Navigation("Deltagare");
                 });
 #pragma warning restore 612, 618
         }

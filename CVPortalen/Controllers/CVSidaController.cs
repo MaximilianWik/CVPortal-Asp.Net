@@ -82,8 +82,11 @@ namespace CVPortalen.Controllers
         {
             try
             {
-                // Hämta och ta bort markerade CV-objekt från databasen
-                var selectedCVs = _context.cVs.Where(cv => cvIds.Contains(cv.CVId)).ToList();
+                string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                // Hämta och ta bort markerade CV-objekt från databasen som tillhör den inloggade användaren
+                var selectedCVs = _context.cVs.Where(cv => cvIds.Contains(cv.CVId) && cv.UserId == currentUserId).ToList();
+
                 _context.cVs.RemoveRange(selectedCVs);
                 _context.SaveChanges();
 
@@ -94,6 +97,7 @@ namespace CVPortalen.Controllers
                 return Json(new { success = false, message = "Ett fel uppstod vid borttagning av CV-objekt: " + ex.Message });
             }
         }
+
 
         public IActionResult Details(int id)
         {
