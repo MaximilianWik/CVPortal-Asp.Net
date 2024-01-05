@@ -1,11 +1,14 @@
 ﻿@model List<Profil>
+
 <h2>Profil-lista</h2>
 
-@if (User.Identity.IsAuthenticated)
-{
-    <a asp-action="Create" asp-controller="HomeProfile" class="btn btn-primary">Skapa en ny HomeProfile</a>
-    <button id="deleteSelected" class="btn btn-danger">Ta bort markerade HomeProfiles</button>
-}
+<form asp-action="HemProfil" method="post" class="mb-3">
+    <div class="form-group">
+        <label for="searchTerm">Search:</label>
+        <input type="text" id="searchTerm" name="searchTerm" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
 
 <div class="table-responsive">
     <table class="table table-bordered">
@@ -19,7 +22,7 @@
                 <th class="col"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="filteredProfilesContainer">
             @foreach (var profile in Model)
             {
                 <tr>
@@ -39,10 +42,31 @@
     </table>
 </div>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Create" asp-controller="HomeProfile" class="btn btn-primary">Skapa en ny HomeProfile</a>
+    <button id="deleteSelected" class="btn btn-danger">Ta bort markerade HomeProfiles</button>
+}
+
 @section scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
+            $('#searchTerm').on('input', function () {
+                var searchTerm = $(this).val().toLowerCase();
+                $.ajax({
+                    url: '/ProfilerController/HemProfil', // Update 'YourControllerName'
+                    method: 'POST',
+                    data: { searchTerm: searchTerm },
+                    success: function (partialView) {
+                        $('#filteredProfilesContainer').html(partialView);
+                    },
+                    error: function (error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+
             $("#deleteSelected").click(function () {
                 var selectedProfiles = [];
                 $('input[name="selectedProfiles"]:checked').each(function () {
@@ -68,6 +92,3 @@
         });
     </script>
 }
-
-
-

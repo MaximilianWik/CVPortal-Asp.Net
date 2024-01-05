@@ -11,6 +11,9 @@ namespace CVPortalen.Models
 
         public virtual ICollection<Projekt> projekt { get; set; }
 
+        public int? ProfilId { get; set; }
+        public virtual Profil Profil { get; set; }
+
 
         public static implicit operator string?(Anvandare? v)
         {
