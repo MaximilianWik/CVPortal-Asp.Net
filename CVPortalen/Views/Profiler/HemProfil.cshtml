@@ -17,7 +17,9 @@
             @foreach (var profile in Model)
             {
                 <tr>
-                    <td class="col">@profile.Name</td>
+                    <td class="col">
+                        <a asp-action="VisaProfil" asp-controller="Profiler" asp-route-id="@profile.ProfilId">@profile.Name</a>
+                    </td>
                     <td class="col">@profile.Adress</td>
                     <td class="col">@profile.AnvandarNamn</td>
                     <td class="col">@profile.TelefonNummer</td>
@@ -63,4 +65,5 @@
         });
     </script>
 }
+
 

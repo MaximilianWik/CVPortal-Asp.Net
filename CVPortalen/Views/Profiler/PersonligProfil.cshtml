@@ -1,0 +1,101 @@
+﻿@model Profil
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personlig Profil</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Lägg till eventuell anpassad CSS här */
+        .profile-container {
+            max-width: 600px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .profile-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px; /* Lägg till lite mellanrum under profilbilden */
+        }
+
+        .profile-info {
+            margin-top: 20px;
+        }
+
+        /* Dölj filnamnet från filinmatningsknappen */
+        #fileInput {
+            display: none;
+        }
+
+        /* Styla filinmatningsknappen som en anpassad knapp */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container profile-container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">Min Profil</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- Lägg till logik för att visa profilbild här -->
+                        <img id="profilePreview" src="/path/to/default-image.jpg" alt="Profilbild" class="profile-image">
+                        <!-- Lägg till en anpassad knapp för att välja profilbild -->
+                        <label for="fileInput" class="custom-file-upload">Välj profilbild</label>
+                        <input type="file" id="fileInput" onchange="previewProfileImage()" />
+                    </div>
+                    <div class="col-md-8 profile-info">
+                        <h3>@Model.Name</h3>
+                        <p><strong>Adress:</strong> @Model.Adress</p>
+                        <p><strong>Användarnamn:</strong> @Model.AnvandarNamn</p>
+                        <p><strong>Telefonnummer:</strong> @Model.TelefonNummer</p>
+                        <p><strong>E-post:</strong> @Model.Epost</p>
+                        <!-- Lägg till andra attribut och information här -->
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light text-muted text-center">
+                <a asp-action="HemProfil" asp-controller="Profiler" class="btn btn-primary">Tillbaka till Profil-lista</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery och Bootstrap JavaScript (om du inte redan har dem inkluderade) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function previewProfileImage() {
+            var fileInput = document.getElementById('fileInput');
+            var profilePreview = document.getElementById('profilePreview');
+
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    profilePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
