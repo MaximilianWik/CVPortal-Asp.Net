@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using CVPortalen.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CVPortalen.Controllers
@@ -124,37 +123,7 @@ namespace CVPortalen.Controllers
         //    }
 
         //}
-        [HttpGet]
-        public IActionResult SökProfil()
-        {
-            var allProfiles = _context.Profils.ToList();
-            return View(allProfiles);
-        }
-        [HttpPost]
-        public IActionResult HemProfil(string searchTerm)
-        {
-            if (string.IsNullOrEmpty(searchTerm))
-            {
-                // If search term is empty or null, show all profiles
-                var allProfiles = _context.Profils.ToList();
-                return View(allProfiles);
-            }
-
-            searchTerm = searchTerm.ToLower(); // Convert to lowercase for case-insensitive search
-
-            var filteredProfiles = _context.Profils
-                .Where(p => p.Name.ToLower().Contains(searchTerm))
-                .ToList();
-
-            return View(filteredProfiles);
-        }
-
-
-
     }
 
+   
 }
-
-
-
-
