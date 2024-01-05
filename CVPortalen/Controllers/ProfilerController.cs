@@ -22,53 +22,84 @@ namespace CVPortalen.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateProfil()
         {
-            Profil Profiler = new Profil();
-            return View(Profiler);
+            return View();
         }
+
         [HttpPost]
-        public IActionResult Create(Profil Profiler)
+        public IActionResult CreateProfil(Profil profil)
         {
+            if (!ModelState.IsValid)
             {
-                Console.WriteLine("Inside Create Profile POST method");
+                // Här kan du hämta användarinformationen från det autentiserade användaren
+                var loggedInUserName = User.Identity.Name;
+                var loggedInUser = _context.Users.SingleOrDefault(u => u.UserName == loggedInUserName);
 
-                if (!ModelState.IsValid)
-                {
-                    try
-                    {
-                        string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                        Console.WriteLine("Current UserId: " + currentUserId);
+                // Tilldela användarinformationen till Profil-objektet
+                profil.AnvandarNamn = loggedInUserName;
+                profil.UserId = loggedInUser;
 
-                        Anvandare currentUser = _context.Users.FirstOrDefault(u => u.Id == currentUserId);
-                        Console.WriteLine("Current User: " + (currentUser != null ? currentUser.UserName : "null"));
+                // Spara Profil-objektet i databasen
+                _context.Profils.Add(profil);
+                _context.SaveChanges();
 
-                        if (currentUser != null)
-                        {
-                            Profiler.UserId = currentUserId; // Assign user ID directly to the Profile object
-
-                            _context.Profils.Add(Profiler);
-                            _context.SaveChanges();
-
-                            Console.WriteLine("Profile saved successfully.");
-
-                            // Redirect to a different action or view for profiles
-                            return RedirectToAction("ProfileStart");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ModelState.AddModelError("", "An error occurred while creating the profile: " + ex.Message);
-                        Console.WriteLine("Exception: " + ex.Message);
-                    }
-                }
-
-                Console.WriteLine("ModelState is not valid or user is null.");
-
-                return View(Profiler);
+                return RedirectToAction("Index", "Home"); // Du kan omdirigera till önskad vy efter att profilen har skapats
             }
 
+            // Om modelltillståndet inte är giltigt, gå tillbaka till skapande av profilen med felmeddelanden
+            return View(profil);
         }
+
+
+        //[HttpGet]
+        //public IActionResult Create()
+        //{
+        //    Profil Profiler = new Profil();
+        //    return View(Profiler);
+        //}
+        //[HttpPost]
+        //public IActionResult Create(Profil Profiler)
+        //{
+        //    {
+        //        Console.WriteLine("Inside Create Profile POST method");
+
+        //        if (!ModelState.IsValid)
+        //        {
+        //            try
+        //            {
+        //                string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //                Console.WriteLine("Current UserId: " + currentUserId);
+
+        //                Anvandare currentUser = _context.Users.FirstOrDefault(u => u.Id == currentUserId);
+        //                Console.WriteLine("Current User: " + (currentUser != null ? currentUser.UserName : "null"));
+
+        //                if (currentUser != null)
+        //                {
+        //                    Profiler.UserId = currentUserId; // Assign user ID directly to the Profile object
+
+        //                    _context.Profils.Add(Profiler);
+        //                    _context.SaveChanges();
+
+        //                    Console.WriteLine("Profile saved successfully.");
+
+        //                    // Redirect to a different action or view for profiles
+        //                    return RedirectToAction("ProfileStart");
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                ModelState.AddModelError("", "An error occurred while creating the profile: " + ex.Message);
+        //                Console.WriteLine("Exception: " + ex.Message);
+        //            }
+        //        }
+
+        //        Console.WriteLine("ModelState is not valid or user is null.");
+
+        //        return View(Profiler);
+        //    }
+
+        //}
     }
 
    

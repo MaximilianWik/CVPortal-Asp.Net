@@ -1,9 +1,46 @@
-﻿@* @model AnvandarRegisterViewModel
+﻿ @model AnvandarRegisterViewModel
 
 @{
     ViewBag.Titel = "Registrera Ny Användare";
 }
- <div asp-validation-summary="All" class="text-danger"></div>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post" asp-action="Registrera">
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Användarnamn: </label>
+        </div>
+        <div class="col-sm-4">
+            <input asp-for="AnvandarNamn" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Lösenord: </label>
+        </div>
+        <div class="col-sm-4">
+            <input asp-for="Losenord" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label>Bekräfta lösenord: </label>
+        </div>
+        <div class="col-sm-4">
+            <input asp-for="BekraftaLosenord" class="form-control" />
+        </div>
+    </div>
+
+    <!-- Ta bort de andra fälten här -->
+
+    <div class="form-group row">
+        <div class="offset-2 col-sm-4">
+            <button type="submit" class="btn btn-primary">Registrera</button>
+        </div>
+    </div>
+</form>
+@*  <div asp-validation-summary="All" class="text-danger"></div>
 
 <form method="post" asp-action="Registrera">
     <div class="form-group row">
@@ -35,15 +72,15 @@
             <button type="submit" class="btn btn-primary">Registrera</button>
         </div>
     </div>
-</form>
- *@
- @model AnvandarRegisterViewModel
+</form> *@
+ 
+ @* @model AnvandarRegisterViewModel
 
 @{
     ViewBag.Titel = "Registrera Ny Användare";
-}
+} *@
 
-<div asp-validation-summary="All" class="text-danger"></div>
+@* <div asp-validation-summary="All" class="text-danger"></div>
 
 <form method="post" asp-action="Registrera">
     <div class="form-group row">
@@ -108,4 +145,4 @@
         </div>
     </div>
 
-</form>
+</form> *@
