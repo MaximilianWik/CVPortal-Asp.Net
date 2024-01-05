@@ -3,21 +3,21 @@
 <h2>Edit Project</h2>
 
 <form id="editForm" method="post">
-    <input type="hidden" asp-for="ProjektId" id="ProjektId" />
+    <input type="hidden" asp-for="ProjektId" />
 
     <div class="form-group">
         <label asp-for="ProjektName"></label>
-        <input asp-for="ProjektName" class="form-control" id="ProjektName" />
+        <input asp-for="ProjektName" class="form-control" />
         <span asp-validation-for="ProjektName" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Artal"></label>
-        <input asp-for="Artal" class="form-control" id="Artal" />
+        <input asp-for="Artal" class="form-control" />
         <span asp-validation-for="Artal" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Infromation"></label>
-        <textarea asp-for="Infromation" class="form-control" id="Infromation"></textarea>
+        <textarea asp-for="Infromation" class="form-control"></textarea>
         <span asp-validation-for="Infromation" class="text-danger"></span>
     </div>
 
@@ -27,25 +27,28 @@
     </div>
 </form>
 
+
 @section scripts {
     <script>
         function saveChanges() {
-            var formData = new FormData($('#editForm')[0]);
+            var formData = {
+                ProjektId: $('#ProjektId').val(),
+                ProjektName: $('#ProjektName').val(),
+                Artal: $('#Artal').val(),
+                Infromation: $('#Infromation').val()
+            };
 
             $.ajax({
                 url: '@Url.Action("EditProjekt", "Projektsida")',
                 type: 'POST',
-                contentType: false,
-                processData: false,
-                data: formData,
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
                 success: function (result) {
                     alert(result.message);
 
                     if (result.success) {
-                        // Uppdatera vyn eller vidta andra åtgärder vid behov
                         location.reload();
                     } else {
-                        // Visa felmeddelanden om några valideringsfel inträffade
                         if (result.errors && result.errors.length > 0) {
                             result.errors.forEach(function (error) {
                                 console.error("Validation Error:", error);
@@ -59,9 +62,10 @@
                     console.error("Error:", error);
                 }
             });
-
+        }
     </script>
 }
+
 
 
 
