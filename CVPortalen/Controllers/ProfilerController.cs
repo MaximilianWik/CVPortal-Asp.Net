@@ -51,6 +51,29 @@ namespace CVPortalen.Controllers
             return View(profil);
         }
 
+        public IActionResult VisaProfil(int? id)
+        {
+            if (id == null)
+            {
+                // Om ingen id skickas, gör något, t.ex. skicka till en felvy
+                return View("Error");
+            }
+
+            // Hämta användarens profil från databasen baserat på id
+            var profil = _context.Profils.FirstOrDefault(p => p.ProfilId == id);
+
+            if (profil != null)
+            {
+                // Om profilen hittades, skicka användaren till PersonligProfil-vyn med profilen
+                return View("PersonligProfil", profil);
+            }
+            else
+            {
+                // Om profilen inte hittades, gör något annat, t.ex. skicka till en felvy
+                return View("Error");
+            }
+        }
+
 
         //[HttpGet]
         //public IActionResult Create()
