@@ -21,18 +21,37 @@ namespace CVPortalen.Controllers
 
 
         //[Authorize] Kan behöva kommenteras bort igen sen
+
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var currentUser = _userManager.GetUserAsync(User).Result;
 
-            var currentUser = _userManager.GetUserAsync(User).Result;
+                // Fetch messages for the current user
+                var messages = _dBContext.Messages
+                    .Where(m => m.ReceiverId == currentUser.Id)
+                    .ToList();
 
-            // Fetch messages for the current user
-            var messages = _dBContext.Messages
-                .Where(m => m.ReceiverId == currentUser.Id)
-                .ToList();
+                return View(messages);
+            }
 
-            return View(messages);
+            // Användaren är inte inloggad, hantera detta fall på ett lämpligt sätt
+            return View(); // Detta antar att du har en vy för oinloggade användare (utan meddelanden)
         }
+
+        //public IActionResult Index()
+        //{
+
+        //    var currentUser = _userManager.GetUserAsync(User).Result;
+
+        //    // Fetch messages for the current user
+        //    var messages = _dBContext.Messages
+        //        .Where(m => m.ReceiverId == currentUser.Id)
+        //        .ToList();
+
+        //    return View(messages);
+        //}
 
 
 

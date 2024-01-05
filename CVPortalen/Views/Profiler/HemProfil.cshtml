@@ -1,6 +1,12 @@
 ﻿@model List<Profil>
 <h2>Profil-lista</h2>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Create" asp-controller="HomeProfile" class="btn btn-primary">Skapa en ny HomeProfile</a>
+    <button id="deleteSelected" class="btn btn-danger">Ta bort markerade HomeProfiles</button>
+}
+
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead>
@@ -33,9 +39,6 @@
     </table>
 </div>
 
-<a asp-action="Create" asp-controller="HomeProfile" class="btn btn-primary">Skapa en ny HomeProfile</a>
-<button id="deleteSelected" class="btn btn-danger">Ta bort markerade HomeProfiles</button>
-
 @section scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -65,5 +68,6 @@
         });
     </script>
 }
+
 
 
