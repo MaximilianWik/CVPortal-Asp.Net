@@ -14,7 +14,7 @@ namespace CVPortalen.Controllers
         {
             _context = context;
         }
-        public IActionResult ProfilHem()
+        public IActionResult HemProfil()
         {
             List<Profil> AllaProfiler = _context.Profils.ToList();
             return View(AllaProfiler);

@@ -1,2 +1,66 @@
 ﻿@model List<Profil>
+<h2>Profil-lista</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="col">Name</th>
+                <th class="col">Adress</th>
+                <th class="col">AnvandarNamn</th>
+                <th class="col">TelefonNummer</th>
+                <th class="col">Epost</th>
+                <th class="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var profile in Model)
+            {
+                <tr>
+                    <td class="col">@profile.Name</td>
+                    <td class="col">@profile.Adress</td>
+                    <td class="col">@profile.AnvandarNamn</td>
+                    <td class="col">@profile.TelefonNummer</td>
+                    <td class="col">@profile.Epost</td>
+                    <td class="col">
+                        <input type="checkbox" name="selectedProfiles" value="@profile.ProfilId" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a asp-action="Create" asp-controller="HomeProfile" class="btn btn-primary">Skapa en ny HomeProfile</a>
+<button id="deleteSelected" class="btn btn-danger">Ta bort markerade HomeProfiles</button>
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#deleteSelected").click(function () {
+                var selectedProfiles = [];
+                $('input[name="selectedProfiles"]:checked').each(function () {
+                    selectedProfiles.push($(this).val());
+                });
+
+                if (selectedProfiles.length > 0) {
+                    // Skicka en AJAX-förfrågan för att ta bort markerade HomeProfiles
+                    $.ajax({
+                        url: '/HomeProfile/DeleteSelectedProfiles',
+                        type: 'POST',
+                        data: { profileIds: selectedProfiles },
+                        success: function (result) {
+                            // Uppdatera vyn eller vidta andra åtgärder vid behov
+                            location.reload();
+                        },
+                        error: function (error) {
+                            console.error("Error:", error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
 

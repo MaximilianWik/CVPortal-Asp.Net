@@ -20,7 +20,7 @@ namespace CVPortalen.Controllers
 
 
 
-        [Authorize]
+        //[Authorize] Kan behöva kommenteras bort igen sen
         public IActionResult Index()
         {
 
