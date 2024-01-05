@@ -6,6 +6,8 @@ namespace CVPortalen.Models
 {
     public class Profil
     {
+        internal int? profilid;
+
         [Key]
         public int ProfilId { get; set; } 
 

@@ -51,78 +51,54 @@ namespace CVPortalen.Controllers
             return View(profil);
         }
 
-        public IActionResult VisaProfil(int? id)
+        public IActionResult Visaprofil(int? id)
         {
             if (id == null)
             {
-                // Om ingen id skickas, gör något, t.ex. skicka till en felvy
-                return View("Error");
+                // om ingen id skickas, gör något, t.ex. skicka till en felvy
+                return View("error");
             }
 
-            // Hämta användarens profil från databasen baserat på id
+            // hämta användarens profil från databasen baserat på id
             var profil = _context.Profils.FirstOrDefault(p => p.ProfilId == id);
 
             if (profil != null)
             {
-                // Om profilen hittades, skicka användaren till PersonligProfil-vyn med profilen
-                return View("PersonligProfil", profil);
+                // om profilen hittades, skicka användaren till personligprofil-vyn med profilen
+                return View("personligprofil", profil);
             }
             else
             {
-                // Om profilen inte hittades, gör något annat, t.ex. skicka till en felvy
-                return View("Error");
+                // om profilen inte hittades, gör något annat, t.ex. skicka till en felvy
+                return View("error");
+
             }
         }
 
+        [HttpGet]
+        public IActionResult SökProfil()
+        {
+            var allProfiles = _context.Profils.ToList();
+            return View(allProfiles);
+        }
+        [HttpPost]
+        public IActionResult HemProfil(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                // If search term is empty or null, show all profiles
+                var allProfiles = _context.Profils.ToList();
+                return View(allProfiles);
+            }
 
-        //[HttpGet]
-        //public IActionResult Create()
-        //{
-        //    Profil Profiler = new Profil();
-        //    return View(Profiler);
-        //}
-        //[HttpPost]
-        //public IActionResult Create(Profil Profiler)
-        //{
-        //    {
-        //        Console.WriteLine("Inside Create Profile POST method");
+            searchTerm = searchTerm.ToLower(); // Convert to lowercase for case-insensitive search
 
-        //        if (!ModelState.IsValid)
-        //        {
-        //            try
-        //            {
-        //                string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //                Console.WriteLine("Current UserId: " + currentUserId);
+            var filteredProfiles = _context.Profils
+                .Where(p => p.Name.ToLower().Contains(searchTerm))
+                .ToList();
 
-        //                Anvandare currentUser = _context.Users.FirstOrDefault(u => u.Id == currentUserId);
-        //                Console.WriteLine("Current User: " + (currentUser != null ? currentUser.UserName : "null"));
-
-        //                if (currentUser != null)
-        //                {
-        //                    Profiler.UserId = currentUserId; // Assign user ID directly to the Profile object
-
-        //                    _context.Profils.Add(Profiler);
-        //                    _context.SaveChanges();
-
-        //                    Console.WriteLine("Profile saved successfully.");
-
-        //                    // Redirect to a different action or view for profiles
-        //                    return RedirectToAction("ProfileStart");
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                ModelState.AddModelError("", "An error occurred while creating the profile: " + ex.Message);
-        //                Console.WriteLine("Exception: " + ex.Message);
-        //            }
-        //        }
-
-        //        Console.WriteLine("ModelState is not valid or user is null.");
-
-        //        return View(Profiler);
-        //    }
-
-        //}
+            return View(filteredProfiles);
+        }
     }
 
    
