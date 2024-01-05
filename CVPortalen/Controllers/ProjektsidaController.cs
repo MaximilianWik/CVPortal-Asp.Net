@@ -180,7 +180,7 @@ namespace CVPortalen.Controllers
             }
         }
         [HttpPost]
-        public IActionResult EditProjekt(Projekt updatedProject)
+        public IActionResult EditProjekt([FromBody] Projekt updatedProject)
         {
             if (ModelState.IsValid)
             {
@@ -191,7 +191,7 @@ namespace CVPortalen.Controllers
                     // Uppdatera bara de önskade fälten
                     existingProject.ProjektName = updatedProject.ProjektName;
                     existingProject.Artal = updatedProject.Artal;
-                    existingProject.Infromation = updatedProject.Infromation; // Lägg till de andra fälten du vill uppdatera
+                    existingProject.Infromation = updatedProject.Infromation;
 
                     _context.SaveChanges();
 
@@ -201,15 +201,9 @@ namespace CVPortalen.Controllers
                 return Json(new { success = false, message = "Projektet hittades inte!" });
             }
 
-            // Logga ModelState-felmeddelanden
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                Console.WriteLine($"Validation Error: {error.ErrorMessage}");
-            }
-
-            // Om modelltillståndet inte är giltigt, gå tillbaka till redigeringsvyn med felmeddelanden
             return Json(new { success = false, message = "Valideringsfel", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
         }
+
 
 
     }

@@ -33,6 +33,7 @@ namespace CVPortalen.Controllers
 
 
         //Registerar användare
+
         [HttpPost]
         public async Task<IActionResult> Registrera(AnvandarRegisterViewModel anvandarRegisterViewModel)
         {
@@ -43,13 +44,15 @@ namespace CVPortalen.Controllers
 
                 var result = await userManager.CreateAsync(anvandare, anvandarRegisterViewModel.Losenord);
 
-
                 if (result.Succeeded)
                 {
                     Console.WriteLine("Test");
+
+                    // Logga in användaren
                     await signInManager.SignInAsync(anvandare, isPersistent: true);
-                    
-                    return RedirectToAction("Index", "Home");
+
+                    // Utför din egen omdirigering till CreateProfil
+                    return RedirectToAction("CreateProfil", "Profiler");
                 }
                 else
                 {
@@ -61,6 +64,36 @@ namespace CVPortalen.Controllers
             }
             return View(anvandarRegisterViewModel);
         }
+
+
+        //[HttpPost]
+        //public async Task<IActionResult> Registrera(AnvandarRegisterViewModel anvandarRegisterViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Anvandare anvandare = new Anvandare();
+        //        anvandare.UserName = anvandarRegisterViewModel.AnvandarNamn;
+
+        //        var result = await userManager.CreateAsync(anvandare, anvandarRegisterViewModel.Losenord);
+
+
+        //        if (result.Succeeded)
+        //        {
+        //            Console.WriteLine("Test");
+        //            await signInManager.SignInAsync(anvandare, isPersistent: true);
+
+        //            return RedirectToAction("CreateProfil");
+        //        }
+        //        else
+        //        {
+        //            foreach (var error in result.Errors)
+        //            {
+        //                ModelState.AddModelError("", error.Description);
+        //            }
+        //        }
+        //    }
+        //    return View(anvandarRegisterViewModel);
+        //}
 
         [HttpPost]
         public async Task<IActionResult> LogIn(LoginViewModel loginViewModel)
