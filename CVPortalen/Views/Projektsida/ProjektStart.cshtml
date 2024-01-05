@@ -32,6 +32,14 @@
                     {
                         <a href="#" onclick="joinProject(@project.ProjektId)" class="btn btn-success">Join Project</a>
                     }
+                    @if (User.Identity.IsAuthenticated && project.User.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                    {
+                        <!-- Lägg till knappen för att ta bort projektet -->
+                        <a href="#" onclick="removeProject(@project.ProjektId)" class="btn btn-danger">Remove Project</a>
+
+                        <!-- Lägg till knappen för att redigera projektet -->
+                        <a asp-action="EditProjekt" asp-controller="Projektsida" asp-route-id="@project.ProjektId" class="btn btn-warning">Edit Project</a>
+                    }
                 </td>
             </tr>
         }
@@ -59,7 +67,29 @@
                 }
             });
         }
+
+        function removeProject(projectId) {
+            // Implementera logiken för att ta bort projektet här med AJAX-förfrågan
+            $.ajax({
+                url: '@Url.Action("RemoveProjekt", "Projektsida")',
+                type: 'POST',
+                data: { projectId: projectId },
+                success: function (result) {
+                    // Uppdatera vyn eller vidta andra åtgärder vid behov
+                    alert(result.message);
+                    if (result.success) {
+                        // Uppdatera vyn, exempelvis genom att ladda om sidan
+                        location.reload();
+                    }
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
     </script>
 }
+
+
 
 

@@ -1,0 +1,69 @@
+﻿@model Projekt
+
+<h2>Edit Project</h2>
+
+<form id="editForm" method="post">
+    <input type="hidden" asp-for="ProjektId" id="ProjektId" />
+
+    <div class="form-group">
+        <label asp-for="ProjektName"></label>
+        <input asp-for="ProjektName" class="form-control" id="ProjektName" />
+        <span asp-validation-for="ProjektName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Artal"></label>
+        <input asp-for="Artal" class="form-control" id="Artal" />
+        <span asp-validation-for="Artal" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Infromation"></label>
+        <textarea asp-for="Infromation" class="form-control" id="Infromation"></textarea>
+        <span asp-validation-for="Infromation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
+        <a asp-action="ProjektDetails" asp-controller="Projektsida" asp-route-id="@Model.ProjektId" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section scripts {
+    <script>
+        function saveChanges() {
+            var formData = new FormData($('#editForm')[0]);
+
+            $.ajax({
+                url: '@Url.Action("EditProjekt", "Projektsida")',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (result) {
+                    alert(result.message);
+
+                    if (result.success) {
+                        // Uppdatera vyn eller vidta andra åtgärder vid behov
+                        location.reload();
+                    } else {
+                        // Visa felmeddelanden om några valideringsfel inträffade
+                        if (result.errors && result.errors.length > 0) {
+                            result.errors.forEach(function (error) {
+                                console.error("Validation Error:", error);
+                            });
+                        } else {
+                            console.error("Unknown Validation Error");
+                        }
+                    }
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+
+    </script>
+}
+
+
+
+
+

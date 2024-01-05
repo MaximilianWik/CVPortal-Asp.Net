@@ -134,12 +134,82 @@ namespace CVPortalen.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult RemoveProjekt(int projectId)
+        {
+            try
+            {
+                // Hämta användarens ID från Identity
+                string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+                // Hämta projektet från databasen
+                var project = _context.projekt.FirstOrDefault(p => p.ProjektId == projectId);
 
+                if (project != null && currentUserId != null && project.UserId == currentUserId)
+                {
+                    _context.projekt.Remove(project);
+                    _context.SaveChanges();
 
+                    return Json(new { success = true, message = "Projektet har tagits bort!" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Du har inte behörighet att ta bort detta projekt!" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Ett fel uppstod: " + ex.Message });
+            }
+        }
 
+        [HttpGet]
+        public IActionResult EditProjekt(int id)
+        {
+            var project = _context.projekt.Include(p => p.User).FirstOrDefault(p => p.ProjektId == id);
 
+            if (project != null && project.User.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                // Användaren är skaparen av projektet, och det är tillåtet att redigera
+                return View(project);
+            }
+            else
+            {
+                // Användaren har inte behörighet att redigera detta projekt
+                return RedirectToAction("ProjektStart");
+            }
+        }
+        [HttpPost]
+        public IActionResult EditProjekt(Projekt updatedProject)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingProject = _context.projekt.Find(updatedProject.ProjektId);
 
+                if (existingProject != null)
+                {
+                    // Uppdatera bara de önskade fälten
+                    existingProject.ProjektName = updatedProject.ProjektName;
+                    existingProject.Artal = updatedProject.Artal;
+                    existingProject.Infromation = updatedProject.Infromation; // Lägg till de andra fälten du vill uppdatera
+
+                    _context.SaveChanges();
+
+                    return Json(new { success = true, message = "Projektet har uppdaterats!" });
+                }
+
+                return Json(new { success = false, message = "Projektet hittades inte!" });
+            }
+
+            // Logga ModelState-felmeddelanden
+            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+            {
+                Console.WriteLine($"Validation Error: {error.ErrorMessage}");
+            }
+
+            // Om modelltillståndet inte är giltigt, gå tillbaka till redigeringsvyn med felmeddelanden
+            return Json(new { success = false, message = "Valideringsfel", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+        }
 
 
     }
