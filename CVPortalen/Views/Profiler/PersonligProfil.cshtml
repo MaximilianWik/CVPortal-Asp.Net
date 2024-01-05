@@ -57,8 +57,11 @@
                         <!-- Lägg till logik för att visa profilbild här -->
                         <img id="profilePreview" src="/path/to/default-image.jpg" alt="Profilbild" class="profile-image">
                         <!-- Lägg till en anpassad knapp för att välja profilbild -->
-                        <label for="fileInput" class="custom-file-upload">Välj profilbild</label>
-                        <input type="file" id="fileInput" onchange="previewProfileImage()" />
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <label for="fileInput" class="custom-file-upload">Välj profilbild</label>
+                            <input type="file" id="fileInput" onchange="previewProfileImage()" />
+                        }
                     </div>
                     <div class="col-md-8 profile-info">
                         <h3>@Model.Name</h3>
@@ -95,6 +98,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 

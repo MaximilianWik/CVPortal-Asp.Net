@@ -2,6 +2,12 @@
 
 <h2>CV-lista</h2>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Create" asp-controller="CVSida" class="btn btn-primary">Skapa ett CV</a>
+    <button id="deleteSelected" class="btn btn-danger">Ta bort markerade CV</button>
+}
+
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead>
@@ -29,9 +35,6 @@
         </tbody>
     </table>
 </div>
-
-<a asp-action="Create" asp-controller="CVSida" class="btn btn-primary">Skapa ett CV</a>
-<button id="deleteSelected" class="btn btn-danger">Ta bort markerade CV</button>
 
 @section scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -76,5 +79,6 @@
         }
     }
 }
+
 
 

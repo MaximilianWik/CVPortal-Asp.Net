@@ -120,12 +120,19 @@ namespace CVPortalen.Controllers
         }
 
         //Logga ut användare
-        [HttpPost]
-        public async Task<IActionResult> Loggaut()
+
+        public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Loggaut()
+        //{
+        //    await signInManager.SignOutAsync();
+        //    return RedirectToAction("Index", "Home");
+        //}
 
 
     }

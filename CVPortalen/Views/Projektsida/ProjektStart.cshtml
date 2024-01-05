@@ -3,8 +3,11 @@
 
 <h2>Projects</h2>
 
-<!-- Lägg till en länk för att skapa ett projekt -->
-<a asp-action="CreateProjekt" asp-controller="Projektsida" class="btn btn-primary">Create Project</a>
+@if (User.Identity.IsAuthenticated)
+{
+    <!-- Lägg till en länk för att skapa ett projekt -->
+    <a asp-action="CreateProjekt" asp-controller="Projektsida" class="btn btn-primary">Create Project</a>
+}
 
 <table class="table table-bordered">
     <thead>
@@ -89,6 +92,7 @@
         }
     </script>
 }
+
 
 
 
