@@ -1,0 +1,61 @@
+﻿@model Profil
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiles</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Create New Profile</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="Create" method="post">
+                            <div class="form-group">
+                                <label for="Name">Name</label>
+                                <input type="text" name="Name" id="Name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Adress">Address</label>
+                                <input type="text" name="Adress" id="Adress" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="AnvandarNamn">Username</label>
+                                <input type="text" name="AnvandarNamn" id="AnvandarNamn" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Losenord">Password</label>
+                                <input type="password" name="Losenord" id="Losenord" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="TelefonNummer">Phone Number</label>
+                                <input type="tel" name="TelefonNummer" id="TelefonNummer" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Epost">Email</label>
+                                <input type="email" name="Epost" id="Epost" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="TillhorandeCV">Related CV</label>
+                                <input type="number" name="TillhorandeCV" id="TillhorandeCV" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Create Profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

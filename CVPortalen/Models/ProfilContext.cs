@@ -161,12 +161,7 @@ namespace CVPortalen.Models
                 .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //modelBuilder.Entity<Projekt>()
-            //.HasMany(p => p.Deltagare)
-            //.WithOne(d => d.Projekt)
-            //.HasForeignKey(d => d.ProjektId)
-            //.OnDelete(DeleteBehavior.Restrict); // Ändrad inställning här
-
+           
 
 
 

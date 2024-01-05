@@ -24,6 +24,8 @@ namespace CVPortalen.Models
         [ForeignKey(nameof(CV.CVId))]
         public int TillhorandeCV { get; set; }
 
+        public virtual Anvandare UserId { get; set; }
+
         
 
     }

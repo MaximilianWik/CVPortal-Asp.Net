@@ -1,59 +1,75 @@
-﻿using CVPortalen.Models;
+﻿using System.Linq;
+using System.Security.Claims;
+using CVPortalen.Models;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CVPortalen.Controllers
 {
     public class ProfilerController : Controller
     {
-        public IActionResult Index()
+        private ProfilContext _context;
+
+        public ProfilerController(ProfilContext context)
         {
-            return View();
+            _context = context;
+        }
+        public IActionResult ProfilHem()
+        {
+            List<Profil> AllaProfiler = _context.Profils.ToList();
+            return View(AllaProfiler);
+
         }
 
-        public IActionResult ProfilFilip()
+        [HttpGet]
+        public IActionResult Create()
         {
-            return View();
+            Profil Profiler = new Profil();
+            return View(Profiler);
         }
-
-        public IActionResult ProfilAnton()
+        [HttpPost]
+        public IActionResult Create(Profil Profiler)
         {
-            return View();
-        }
+            {
+                Console.WriteLine("Inside Create Profile POST method");
 
-        public IActionResult ProfilMax()
-        {
-            return View();
+                if (!ModelState.IsValid)
+                {
+                    try
+                    {
+                        string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                        Console.WriteLine("Current UserId: " + currentUserId);
+
+                        Anvandare currentUser = _context.Users.FirstOrDefault(u => u.Id == currentUserId);
+                        Console.WriteLine("Current User: " + (currentUser != null ? currentUser.UserName : "null"));
+
+                        if (currentUser != null)
+                        {
+                            Profiler.UserId = currentUserId; // Assign user ID directly to the Profile object
+
+                            _context.Profils.Add(Profiler);
+                            _context.SaveChanges();
+
+                            Console.WriteLine("Profile saved successfully.");
+
+                            // Redirect to a different action or view for profiles
+                            return RedirectToAction("ProfileStart");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", "An error occurred while creating the profile: " + ex.Message);
+                        Console.WriteLine("Exception: " + ex.Message);
+                    }
+                }
+
+                Console.WriteLine("ModelState is not valid or user is null.");
+
+                return View(Profiler);
+            }
+
         }
     }
 
-    public class ProfileController : Controller
-    {
-        public IActionResult Index()
-        {
-            // Retrieve user profile information (you may replace this with your actual logic)
-            var userProfile = GetCurrentUserProfile(); // Implement this method to get the user's profile
-
-            if (userProfile != null)
-            {
-                return View(userProfile);
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-
-        private Anvandare GetCurrentUserProfile()
-        {
-            // Implement this method to get the user's profile based on the currently logged-in user
-            // You can use your DbContext or any other method to retrieve the user's profile
-            // For simplicity, this example returns a hardcoded profile
-            return new Anvandare
-            {
-            };
-
-
-        }
-
-    }
+   
 }
