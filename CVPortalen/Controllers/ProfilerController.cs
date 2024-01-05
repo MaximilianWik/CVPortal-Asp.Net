@@ -75,6 +75,7 @@ namespace CVPortalen.Controllers
             }
         }
 
+
         [HttpGet]
         public IActionResult SökProfil()
         {
