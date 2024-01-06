@@ -43,16 +43,16 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">Log Out</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">Logga ut</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Profiler" asp-action="VisaProfil">Välkommen: @User.Identity.Name</a>
+                                <span class="nav-link text-muted">Välkommen: @User.Identity.Name</span>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogIn">Log In</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogIn">Logga In</a>
                             </li>
                         }
                     </ul>
