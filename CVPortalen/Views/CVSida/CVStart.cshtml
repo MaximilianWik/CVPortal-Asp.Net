@@ -12,9 +12,10 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th class="col">Titel</th>
-                <th class="col">Arbetsplats</th>
-                <th class="col">Beskrivning</th>
+                <th class="col">Skapare</th>
+                <th class="col">Utbildningar</th>
+                <th class="col">Kompetenser</th>
+                <th class="col">Tidigare Erfarenheter</th>
                 <th class="col"></th>
             </tr>
         </thead>
@@ -23,10 +24,11 @@
             {
                 <tr>
                     <td class="col">
-                        <a asp-action="Details" asp-controller="CVSida" asp-route-id="@cv.CVId">@cv.Titel</a>
+                        <a asp-action="Details" asp-controller="CVSida" asp-route-id="@cv.CVId">@cv.Skapare</a>
                     </td>
-                    <td class="col">@cv.Arbetsplats</td>
-                    <td class="col">@TruncateDescription(cv.Beskrivning, 50)</td>
+                    <td class="col">@cv.Utbildningar</td>
+                    <td class="col">@cv.Kompetenser</td>
+                    <td class="col">@TruncateDescription(cv.TidigareErfarenheter, 50)</td>
                     <td class="col">
                         <input type="checkbox" name="selectedCVs" value="@cv.CVId" />
                     </td>
