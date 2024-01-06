@@ -4,6 +4,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CVPortalen.Models
 {
+
+    //              *  ,MMM8&&&.            *
+    //                MMMM88&&&&&    .
+    //               MMMM88&&&&&&&
+    //    *          MMM88&&&&&&&&
+    //               MMM88&&&&&&&&
+    //               'MMM88&&&&&&'
+    //                 'MMM8&&&'      *    
+    //        |\___/|     /\___/\
+    //        )     (     )    ~( .              '
+    //       =\     /=   =\~    /=
+    //         )===(       ) ~ (
+    //        /     \     /     \
+    //        |     |     ) ~   (
+    //       /       \   /     ~ \          
+    //       \       /   \~     ~/
+    //max_/\_/\__ _/_/\_/\__ ~__/_/\_/\_/\_/\_/\_
+    //|  |  |  |((  |  |  | ))  |  |  |  |  |  |
+    //|  |  |  | ) ) |  |  |//|  |  |  |  |  |  |
+    //|  |  |  |(_(  |  |  (( |  |  |  |  |  |  |
+    //|  |  |  |  |  |  |  |\)|  |  |  |  |  |  |
+    //|  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+    // Viktigt  för mentala hälsan att besmycka sånna annars trista miljöer...
+
+
     public class ProfilContext : IdentityDbContext<Anvandare>
     {
         public ProfilContext(DbContextOptions<ProfilContext> options) : base(options) { }

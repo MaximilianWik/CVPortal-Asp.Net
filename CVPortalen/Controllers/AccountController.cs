@@ -15,7 +15,7 @@ namespace CVPortalen.Controllers
             this.signInManager = signInMngr;
         }
 
-        //Vyn för användar registrering
+        //Vanvändar registrering
         [HttpGet]
         public IActionResult Registrera()
         {
@@ -139,24 +139,23 @@ namespace CVPortalen.Controllers
         [HttpGet]
         public IActionResult ChangePassword(string id)
         {
-            // Retrieve the user based on the username (id parameter)
+            // hämtar user baserad på id parameter
             var user = userManager.FindByNameAsync(id).Result;
 
             if (user != null)
             {
-                // Logic to handle the user ID
+                // Logik för att hantera user ID
                 var userId = user.Id;
 
-                // Additional logic based on the user ID, if needed
-                // ...
+                
 
-                // Return the view with the ChangePasswordViewModel
+                // Returnerar vyn ChangePasswordViewModel
                 return View(new ChangePasswordViewModel());
             }
             else
             {
-                // Handle the case where the user is not found
-                // You might want to redirect to an error page or take other appropriate actions
+                // ifall user is inte hittas
+               
                 return RedirectToAction("UserNotFound", "Error");
             }
         }
@@ -173,7 +172,7 @@ namespace CVPortalen.Controllers
 
                     if (result.Succeeded)
                     {
-                        // Password successfully changed, you may want to sign in the user again
+                        
                         await signInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToAction("Index", "Home"); // Redirect to the home page or profile page
                     }
