@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using CVPortalen.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -100,7 +101,6 @@ namespace CVPortalen.Controllers
 
             return View(filteredProfiles);
         }
-    }
-
-   
+       
+        }
 }

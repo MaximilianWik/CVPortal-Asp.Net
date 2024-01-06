@@ -34,20 +34,19 @@ namespace CVPortalen.Models
             [Display(Name = "Bekräfta lösenordet")]
             public string BekraftaLosenord { get; set; }
 
-            //[Required(ErrorMessage = "Vänligen ange epostadress")]
-            //[EmailAddress(ErrorMessage = "Ogiltig epostadress")]
-            //public string Epost { get; set; }
+        //[Required(ErrorMessage = "Vänligen ange epostadress")]
+        //[EmailAddress(ErrorMessage = "Ogiltig epostadress")]
+        //public string Epost { get; set; }
 
-            //[Required(ErrorMessage = "Vänligen ange telefonnummer")]
-            //[RegularExpression(@"^[0-9]*$", ErrorMessage = "Ogiltigt telefonnummer")]
-            //public string TelefonNummer { get; set; }
+        //[Required(ErrorMessage = "Vänligen ange telefonnummer")]
+        //[RegularExpression(@"^[0-9]*$", ErrorMessage = "Ogiltigt telefonnummer")]
+        //public string TelefonNummer { get; set; }
 
-            //[Required(ErrorMessage = "Vänligen ange ditt namn")]
-            //public string Namn { get; set; }
+        //[Required(ErrorMessage = "Vänligen ange ditt namn")]
+        //public string Namn { get; set; }
 
-            [Display(Name = "Jag vill vara privat")]
-            public bool VillVaraPrivat { get; set; }
-        }
+        
+    }
 
     }
 

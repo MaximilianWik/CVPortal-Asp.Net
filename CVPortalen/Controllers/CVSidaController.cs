@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CVPortalen.Controllers
 {
@@ -104,8 +105,18 @@ namespace CVPortalen.Controllers
             var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
             return View(cv);
         }
+        public IActionResult ZlatanCV()
+        {
+            return View();
+        }
+        public IActionResult GatesCV()
+        {
+            return View();
+        }
     }
+   
 }
+
 
    
 

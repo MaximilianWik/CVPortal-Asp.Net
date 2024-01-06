@@ -23,7 +23,9 @@ namespace CVPortalen.Models
 
         public string Epost { get; set; }
 
-        
+        //[Display(Name = "Jag vill vara privat")]
+        //public bool VillVaraPrivat { get; set; }
+
 
         public virtual Anvandare UserId { get; set; }
 
