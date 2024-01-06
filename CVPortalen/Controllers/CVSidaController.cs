@@ -104,6 +104,14 @@ namespace CVPortalen.Controllers
             var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
             return View(cv);
         }
+        public IActionResult ZlatanCV()
+        {
+            return View();
+        }
+        public IActionResult GatesCV()
+        {
+            return View();
+        }
 
     }
 }
