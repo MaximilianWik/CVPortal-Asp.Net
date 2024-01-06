@@ -142,13 +142,6 @@ namespace CVPortalen.Controllers
                 return NotFound();
             }
 
-            // Check if the logged-in user is the owner of the profile
-            //if (User.Identity.Name != editedProfile.AnvandarNamn)
-            //{
-            //    // If not the owner, return to an error view or handle it accordingly
-            //    return View("error");
-            //}
-
             if (!ModelState.IsValid)
             {
                 try
