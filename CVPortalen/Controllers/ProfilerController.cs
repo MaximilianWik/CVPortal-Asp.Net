@@ -135,7 +135,7 @@ namespace CVPortalen.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditProfil(int id, [Bind("ProfilId,Name,Adress,TelefonNummer")] Profil editedProfile, IFormFile newProfilePicture)
+        public IActionResult EditProfil(int id, [Bind("ProfilId,Name,Adress,TelefonNummer,IsPrivate, Epost")] Profil editedProfile, IFormFile newProfilePicture)
         {
             if (id != editedProfile.ProfilId)
             {
@@ -158,13 +158,11 @@ namespace CVPortalen.Controllers
 
                     if (existingProfile == null)
                     {
-                        _logger.LogWarning($"Profile with ID {id} not found.");
+                       
                         return NotFound();
                     }
 
-                    // Log information for debugging
-                    _logger.LogInformation($"Edited Profile ID: {editedProfile.ProfilId}");
-                    _logger.LogInformation($"Existing Profile ID: {existingProfile.ProfilId}");
+                    
 
                     // Handle profile picture update
                     if (newProfilePicture != null && newProfilePicture.Length > 0)
@@ -172,16 +170,17 @@ namespace CVPortalen.Controllers
                         using (var memoryStream = new MemoryStream())
                         {
                             newProfilePicture.CopyTo(memoryStream);
-                            editedProfile.ProfilePicture = memoryStream.ToArray();
+                            existingProfile.ProfilePicture = memoryStream.ToArray();
                         }
                     }
 
                     // Update other profile details
-                    //_context.Entry(existingProfile).CurrentValues.SetValues(editedProfile);
                     existingProfile.Name = editedProfile.Name;
                     existingProfile.Adress = editedProfile.Adress;
                     existingProfile.TelefonNummer = editedProfile.TelefonNummer;
-                    //existingProfile.Epost = editedProfile.Epost;
+                    existingProfile.IsPrivate = editedProfile.IsPrivate;
+                    existingProfile.Epost = editedProfile.Epost;
+                    _context.Profils.Update(existingProfile);
 
                     _context.SaveChanges();
 
@@ -189,7 +188,7 @@ namespace CVPortalen.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError($"Error updating profile with ID {id}: {ex.Message}");
+                    
                     return View("error");
                 }
             }
