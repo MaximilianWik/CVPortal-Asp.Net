@@ -19,14 +19,14 @@
                 <th class="col">AnvandarNamn</th>
                 <th class="col">TelefonNummer</th>
                 <th class="col">Epost</th>
-                <th class="col"></th>
+                @* <th class="col"></th> *@
             </tr>
         </thead>
         <tbody id="filteredProfilesContainer">
-            @foreach (var profile in Model)
+            @if (User.Identity.IsAuthenticated)
             {
-                // Endast visa profiler som inte är privata
-                if (!profile.IsPrivate)
+                <!-- Visa alla profiler för inloggade användare -->
+                @foreach (var profile in Model)
                 {
                     <tr>
                         <td class="col">
@@ -36,40 +36,42 @@
                         <td class="col">@profile.AnvandarNamn</td>
                         <td class="col">@profile.TelefonNummer</td>
                         <td class="col">@profile.Epost</td>
-                        <td class="col">
+                        @* <td class="col">
                             <input type="checkbox" name="selectedProfiles" value="@profile.ProfilId" />
+                        </td> *@
+                    </tr>
+                }
+            }
+            else
+            {
+                <!-- Visa endast icke-privata profiler för icke-inloggade användare -->
+                @foreach (var profile in Model.Where(p => !p.IsPrivate))
+                {
+                    <tr>
+                        <td class="col">
+                            <a asp-action="VisaProfil" asp-controller="Profiler" asp-route-id="@profile.ProfilId">@profile.Name</a>
                         </td>
+                        <td class="col">@profile.Adress</td>
+                        <td class="col">@profile.AnvandarNamn</td>
+                        <td class="col">@profile.TelefonNummer</td>
+                        <td class="col">@profile.Epost</td>
+                        @* <td class="col">
+                            <input type="checkbox" name="selectedProfiles" value="@profile.ProfilId" />
+                        </td> *@
                     </tr>
                 }
             }
 
-            @if(User.Identity.IsAuthenticated){
-            @foreach (var profile in Model)
-            {
-                <tr>
-                    <td class="col">
-                        <a asp-action="VisaProfil" asp-controller="Profiler" asp-route-id="@profile.ProfilId">@profile.Name</a>
-                    </td>
-                    <td class="col">@profile.Adress</td>
-                    <td class="col">@profile.AnvandarNamn</td>
-                    <td class="col">@profile.TelefonNummer</td>
-                    <td class="col">@profile.Epost</td>
-                    <td class="col">
-                        <input type="checkbox" name="selectedProfiles" value="@profile.ProfilId" />
-                    </td>
-                </tr>
-            }
-            }
             
         </tbody>
     </table>
 </div>
 
-@if (User.Identity.IsAuthenticated)
+@* @if (User.Identity.IsAuthenticated)
 {
     <a asp-action="Create" asp-controller="HomeProfile" class="btn btn-primary">Skapa en ny HomeProfile</a>
     <button id="deleteSelected" class="btn btn-danger">Ta bort markerade HomeProfiles</button>
-}
+} *@
 
 @section scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
