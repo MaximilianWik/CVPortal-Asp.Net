@@ -135,6 +135,64 @@ namespace CVPortalen.Controllers
         //}
 
 
+        //Ändra pass
+        [HttpGet]
+        public IActionResult ChangePassword(string id)
+        {
+            // Retrieve the user based on the username (id parameter)
+            var user = userManager.FindByNameAsync(id).Result;
+
+            if (user != null)
+            {
+                // Logic to handle the user ID
+                var userId = user.Id;
+
+                // Additional logic based on the user ID, if needed
+                // ...
+
+                // Return the view with the ChangePasswordViewModel
+                return View(new ChangePasswordViewModel());
+            }
+            else
+            {
+                // Handle the case where the user is not found
+                // You might want to redirect to an error page or take other appropriate actions
+                return RedirectToAction("UserNotFound", "Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByNameAsync(User.Identity.Name);
+                if (user != null)
+                {
+                    var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+                    if (result.Succeeded)
+                    {
+                        // Password successfully changed, you may want to sign in the user again
+                        await signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction("Index", "Home"); // Redirect to the home page or profile page
+                    }
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Användaren hittades inte.");
+                }
+            }
+
+            return View(model);
+        }
+
+
     }
 
         
