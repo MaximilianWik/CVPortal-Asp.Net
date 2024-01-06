@@ -27,7 +27,7 @@ namespace CVPortalen.Models
 
         public virtual Anvandare UserId { get; set; }
 
-        
+        public bool IsPrivate { get; set; }
 
     }
 }

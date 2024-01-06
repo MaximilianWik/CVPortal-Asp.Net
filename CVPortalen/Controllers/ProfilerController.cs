@@ -31,11 +31,10 @@ namespace CVPortalen.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProfil(Profil profil, IFormFile profilePicture)
+        public IActionResult CreateProfil(Profil profil, IFormFile profilePicture, bool isPrivate)
         {
             if (!ModelState.IsValid)
             {
-
                 if (profilePicture != null && profilePicture.Length > 0)
                 {
                     using (var memoryStream = new MemoryStream())
@@ -44,24 +43,23 @@ namespace CVPortalen.Controllers
                         profil.ProfilePicture = memoryStream.ToArray();
                     }
                 }
-                // Här kan du hämta användarinformationen från det autentiserade användaren
+
                 var loggedInUserName = User.Identity.Name;
                 var loggedInUser = _context.Users.SingleOrDefault(u => u.UserName == loggedInUserName);
 
-                // Tilldela användarinformationen till Profil-objektet
                 profil.AnvandarNamn = loggedInUserName;
                 profil.UserId = loggedInUser;
+                profil.IsPrivate = isPrivate; // Sätt IsPrivate baserat på checkbox-värdet
 
-                // Spara Profil-objektet i databasen
                 _context.Profils.Add(profil);
                 _context.SaveChanges();
 
-                return RedirectToAction("Index", "Home"); // Du kan omdirigera till önskad vy efter att profilen har skapats
+                return RedirectToAction("Index", "Home");
             }
 
-            // Om modelltillståndet inte är giltigt, gå tillbaka till skapande av profilen med felmeddelanden
             return View(profil);
         }
+
 
         public IActionResult Visaprofil(int? id)
         {

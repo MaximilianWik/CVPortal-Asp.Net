@@ -27,6 +27,11 @@
         <input asp-for="Epost" class="form-control" />
     </div>
 
+    <div class="form-group form-check">
+        <input type="checkbox" asp-for="IsPrivate" class="form-check-input" />
+        <label class="form-check-label" asp-for="IsPrivate">Private Profile</label>
+    </div>
+
     <div class="form-group">
         <label asp-for="ProfilePicture">Profile Picture:</label>
         <input type="file" name="ProfilePicture" class="form-control" />
@@ -36,5 +41,6 @@
         <button type="submit" class="btn btn-success">Create Profile</button>
     </div>
 </form>
+
 
 
