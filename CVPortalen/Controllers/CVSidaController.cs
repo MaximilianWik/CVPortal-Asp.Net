@@ -104,6 +104,7 @@ namespace CVPortalen.Controllers
             var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
             return View(cv);
         }
+
     }
 }
 
