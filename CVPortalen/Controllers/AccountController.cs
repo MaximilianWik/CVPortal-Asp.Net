@@ -1,5 +1,4 @@
-﻿using AspNetCore;
-using CVPortalen.Models;
+﻿using CVPortalen.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -106,7 +105,7 @@ namespace CVPortalen.Controllers
                     loginViewModel.Losenord,
                     isPersistent: loginViewModel.rememberMe,
                     lockoutOnFailure: false);
-
+                    
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
@@ -128,47 +127,16 @@ namespace CVPortalen.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Loggaut()
-        {
-            await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
-        }
-
         //[HttpPost]
-        //public async Task<IActionResult> ChangePassword(Views_Profiler_PersonligProfil model)
+        //public async Task<IActionResult> Loggaut()
         //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
-
-        //    var user = await userManager.GetUserAsync(User);
-
-        //    if (user == null)
-        //    {
-        //        return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
-        //    }
-
-        //    var changePasswordResult = await userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-
-        //    if (!changePasswordResult.Succeeded)
-        //    {
-        //        foreach (var error in changePasswordResult.Errors)
-        //        {
-        //            ModelState.AddModelError(string.Empty, error.Description);
-        //        }
-        //        return View(model);
-        //    }
-
-        //    await signInManager.RefreshSignInAsync(user);
-        //    return RedirectToAction("Index", new { Message = "Ditt lösenord har ändrats." });
+        //    await signInManager.SignOutAsync();
+        //    return RedirectToAction("Index", "Home");
         //}
 
 
-       
-
-
     }
+
+        
 }
     
