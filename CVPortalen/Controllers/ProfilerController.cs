@@ -48,8 +48,9 @@ namespace CVPortalen.Controllers
                 var loggedInUser = _context.Users.SingleOrDefault(u => u.UserName == loggedInUserName);
 
                 profil.AnvandarNamn = loggedInUserName;
-                profil.UserId = loggedInUser;
-                profil.IsPrivate = isPrivate; // Sätt IsPrivate baserat på checkbox-värdet
+                profil.UserId = loggedInUser?.Id; // Använd användarens ID direkt som int
+
+                profil.IsPrivate = isPrivate;
 
                 _context.Profils.Add(profil);
                 _context.SaveChanges();
@@ -59,6 +60,7 @@ namespace CVPortalen.Controllers
 
             return View(profil);
         }
+
 
 
         public IActionResult Visaprofil(int? id)
@@ -82,6 +84,31 @@ namespace CVPortalen.Controllers
                 // om profilen inte hittades, gör något annat, t.ex. skicka till en felvy
                 return View("error");
 
+            }
+        }
+
+        [HttpGet]
+        public IActionResult HoppaTillProfil(string userName)
+        {
+            try
+            {
+                // Hämta användarens profil baserat på användarnamn
+                var userProfile = _context.Profils.FirstOrDefault(p => p.AnvandarNamn == userName);
+
+                if (userProfile == null)
+                {
+                    // Om profilen inte hittas, gör något, t.ex. skicka till en felvy
+                    return View("error");
+                }
+
+                // Skicka användaren till personligprofil-vyn med den hämtade profilen
+                return RedirectToAction("Visaprofil", new { id = userProfile.ProfilId });
+            }
+            catch (Exception ex)
+            {
+                // Logga eller skriv ut felmeddelandet för att felsöka
+                Console.WriteLine($"Error in HoppaTillProfil: {ex.Message}");
+                return View("error");
             }
         }
 
@@ -190,8 +217,8 @@ namespace CVPortalen.Controllers
             return View(editedProfile);
         }
 
+      
 
-        
 
 
 

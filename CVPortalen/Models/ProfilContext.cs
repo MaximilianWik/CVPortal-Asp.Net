@@ -54,16 +54,16 @@ namespace CVPortalen.Models
 
             // Configure the relationship between Anvandare and Message
             modelBuilder.Entity<Message>()
-                .HasOne(m => m.Sender)
-                .WithMany(u => u.SentMessages)
-                .HasForeignKey(m => m.SenderId)
-                .OnDelete(DeleteBehavior.Restrict);
+        .HasOne(m => m.Sender)
+        .WithMany()
+        .HasForeignKey(m => m.SenderId)
+        .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Message>()
                 .HasOne(m => m.Receiver)
                 .WithMany()
                 .HasForeignKey(m => m.ReceiverId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);//.OnDelete(DeleteBehavior.Restrict);
 
 
             modelBuilder.Entity<Anvandare>()
@@ -78,7 +78,11 @@ namespace CVPortalen.Models
                 .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-           
+            
+
+            
+
+
 
 
 

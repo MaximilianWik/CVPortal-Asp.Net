@@ -25,9 +25,13 @@ namespace CVPortalen.Models
 
         public byte[] ProfilePicture { get; set; }
 
-        public virtual Anvandare UserId { get; set; }
-
         public bool IsPrivate { get; set; }
+
+        [ForeignKey(nameof(Anvandare))]
+        public string UserId { get; set; }
+        public virtual Anvandare User { get; set; }
+
+        
 
     }
 }

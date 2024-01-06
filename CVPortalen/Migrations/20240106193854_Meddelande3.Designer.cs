@@ -4,6 +4,7 @@ using CVPortalen.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CVPortalen.Migrations
 {
     [DbContext(typeof(ProfilContext))]
-    partial class ProfilContextModelSnapshot : ModelSnapshot
+    [Migration("20240106193854_Meddelande3")]
+    partial class Meddelande3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,6 +70,9 @@ namespace CVPortalen.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ProfilId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ProjektId")
                         .HasColumnType("int");
 
@@ -89,6 +95,10 @@ namespace CVPortalen.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("ProfilId")
+                        .IsUnique()
+                        .HasFilter("[ProfilId] IS NOT NULL");
 
                     b.HasIndex("ProjektId");
 
@@ -229,14 +239,7 @@ namespace CVPortalen.Migrations
                     b.Property<int>("TelefonNummer")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("ProfilId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Profils");
                 });
@@ -409,9 +412,15 @@ namespace CVPortalen.Migrations
 
             modelBuilder.Entity("CVPortalen.Models.Anvandare", b =>
                 {
+                    b.HasOne("CVPortalen.Models.Profil", "Profil")
+                        .WithOne("UserId")
+                        .HasForeignKey("CVPortalen.Models.Anvandare", "ProfilId");
+
                     b.HasOne("CVPortalen.Models.Projekt", null)
                         .WithMany("Deltagare")
                         .HasForeignKey("ProjektId");
+
+                    b.Navigation("Profil");
                 });
 
             modelBuilder.Entity("CVPortalen.Models.CV", b =>
@@ -434,7 +443,7 @@ namespace CVPortalen.Migrations
                     b.HasOne("CVPortalen.Models.Anvandare", "Receiver")
                         .WithMany()
                         .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CVPortalen.Models.Anvandare", "Sender")
@@ -446,17 +455,6 @@ namespace CVPortalen.Migrations
                     b.Navigation("Receiver");
 
                     b.Navigation("Sender");
-                });
-
-            modelBuilder.Entity("CVPortalen.Models.Profil", b =>
-                {
-                    b.HasOne("CVPortalen.Models.Anvandare", "User")
-                        .WithOne("Profil")
-                        .HasForeignKey("CVPortalen.Models.Profil", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CVPortalen.Models.Projekt", b =>
@@ -526,12 +524,15 @@ namespace CVPortalen.Migrations
                     b.Navigation("CV")
                         .IsRequired();
 
-                    b.Navigation("Profil")
-                        .IsRequired();
-
                     b.Navigation("SentMessages");
 
                     b.Navigation("projekt");
+                });
+
+            modelBuilder.Entity("CVPortalen.Models.Profil", b =>
+                {
+                    b.Navigation("UserId")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CVPortalen.Models.Projekt", b =>
