@@ -163,46 +163,106 @@ namespace CVPortalen.Controllers
             }
         }
 
+        //[HttpGet]
+        //public IActionResult EditProjekt(int id)
+        //{
+        //    var project = _context.projekt.Include(p => p.User).FirstOrDefault(p => p.ProjektId == id);
+
+        //    if (project != null && project.User.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+        //    {
+        //        // Användaren är skaparen av projektet, och det är tillåtet att redigera
+        //        return View(project);
+        //    }
+        //    else
+        //    {
+        //        // Användaren har inte behörighet att redigera detta projekt
+        //        return RedirectToAction("ProjektStart");
+        //    }
+        //}
+        //[HttpPost]
+        //public IActionResult EditProjekt([FromBody] Projekt updatedProject)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var existingProject = _context.projekt.Find(updatedProject.ProjektId);
+
+        //        if (existingProject != null)
+        //        {
+        //            // Uppdatera bara de önskade fälten
+        //            existingProject.ProjektName = updatedProject.ProjektName;
+        //            existingProject.Artal = updatedProject.Artal;
+        //            existingProject.Infromation = updatedProject.Infromation;
+
+        //            _context.SaveChanges();
+
+        //            return Json(new { success = true, message = "Projektet har uppdaterats!" });
+        //        }
+
+        //        return Json(new { success = false, message = "Projektet hittades inte!" });
+        //    }
+
+        //    return Json(new { success = false, message = "Valideringsfel", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+        //}
+
         [HttpGet]
-        public IActionResult EditProjekt(int id)
+        public IActionResult EditProjekt(int? id)
         {
-            var project = _context.projekt.Include(p => p.User).FirstOrDefault(p => p.ProjektId == id);
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            if (project != null && project.User.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+            var existingProjekt = _context.projekt.FirstOrDefault(p => p.ProjektId == id);
+
+            if (existingProjekt == null)
             {
-                // Användaren är skaparen av projektet, och det är tillåtet att redigera
-                return View(project);
+                return NotFound();
             }
-            else
-            {
-                // Användaren har inte behörighet att redigera detta projekt
-                return RedirectToAction("ProjektStart");
-            }
+
+            return View(existingProjekt);
         }
-        [HttpPost]
-        public IActionResult EditProjekt([FromBody] Projekt updatedProject)
-        {
-            if (ModelState.IsValid)
-            {
-                var existingProject = _context.projekt.Find(updatedProject.ProjektId);
 
-                if (existingProject != null)
+        [HttpPost]
+        public IActionResult EditProjekt(int id, [Bind("ProjektId,ProjektName,Artal,Infromation,UserId")] Projekt editedProjekt)
+        {
+            if (id != editedProjekt.ProjektId)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                try
                 {
-                    // Uppdatera bara de önskade fälten
-                    existingProject.ProjektName = updatedProject.ProjektName;
-                    existingProject.Artal = updatedProject.Artal;
-                    existingProject.Infromation = updatedProject.Infromation;
+                    var existingProjekt = _context.projekt.FirstOrDefault(p => p.ProjektId == id);
+
+                    if (existingProjekt == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Log information for debugging
+
+                    // Update project details
+                    existingProjekt.ProjektName = editedProjekt.ProjektName;
+                    existingProjekt.Artal = editedProjekt.Artal;
+                    existingProjekt.Infromation = editedProjekt.Infromation;
 
                     _context.SaveChanges();
 
-                    return Json(new { success = true, message = "Projektet har uppdaterats!" });
+                    return RedirectToAction("ProjektDetails", new { id = editedProjekt.ProjektId });
                 }
-
-                return Json(new { success = false, message = "Projektet hittades inte!" });
+                catch (Exception ex)
+                {
+                    return View("error");
+                }
             }
 
-            return Json(new { success = false, message = "Valideringsfel", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+            // If model state is not valid, return to the edit view with the project details
+            return View(editedProjekt);
         }
+
+
 
 
 
