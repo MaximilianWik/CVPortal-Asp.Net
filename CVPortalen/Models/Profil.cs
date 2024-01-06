@@ -23,7 +23,7 @@ namespace CVPortalen.Models
 
         public string Epost { get; set; }
 
-        
+        public byte[] ProfilePicture { get; set; }
 
         public virtual Anvandare UserId { get; set; }
 

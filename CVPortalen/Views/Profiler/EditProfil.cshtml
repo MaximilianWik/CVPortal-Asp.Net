@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personlig Profil</title>
+    <title>Edit Profile</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -39,38 +39,43 @@
     <div class="container profile-container">
         <div class="card">
             <div class="card-header bg-primary text-white">
-                <h2 class="mb-0">Min Profil</h2>
+                <h2 class="mb-0">Edit Profile</h2>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <!-- Add logic to display the profile picture here -->
-                        <img id="profilePreview" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)" alt="Profilbild" class="profile-image">
-                        <!-- Add a custom button to choose a profile picture -->
-                       @*  @if (User.Identity.IsAuthenticated)
-                        {
-                            <label for="fileInput" class="custom-file-upload">Välj profilbild</label>
-                            <input type="file" id="fileInput" onchange="previewProfileImage()" />
-                        } *@
+                <form asp-action="EditProfil" asp-controller="Profiler" method="post" enctype="multipart/form-data"> 
+                    <input type="hidden" asp-for="ProfilId"/>
+                    <input type="hidden" asp-for="AnvandarNamn"/>
+                    <div class="form-group">
+                        <label asp-for="Name">Name:</label>
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Adress">Address:</label>
+                        <input asp-for="Adress" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TelefonNummer">Phone Number:</label>
+                        <input asp-for="TelefonNummer" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Epost">Email:</label>
+                        <input asp-for="Epost" class="form-control" />
+                    </div>
 
-                        <!-- Add the code for editing profile if the user is the owner -->
-                        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AnvandarNamn)
-                        {
-                            <a asp-action="EditProfil" asp-controller="Profiler" asp-route-id="@Model.ProfilId" mothod="get" class="btn btn-primary">Redigera Profil</a>
-                        }
+                    <div class="form-group">
+                        <label asp-for="ProfilePicture">Profile Picture:</label>
+                        <img id="profilePreview" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)" alt="Profile Picture" class="profile-image">
+                        <label for="fileInput" class="custom-file-upload">Choose new profile picture</label>
+                        <input type="file" id="fileInput" name="newProfilePicture" onchange="previewProfileImage()" />
                     </div>
-                    <div class="col-md-8 profile-info">
-                        <h3>@Model.Name</h3>
-                        <p><strong>Adress:</strong> @Model.Adress</p>
-                        <p><strong>Användarnamn:</strong> @Model.AnvandarNamn</p>
-                        <p><strong>Telefonnummer:</strong> @Model.TelefonNummer</p>
-                        <p><strong>E-post:</strong> @Model.Epost</p>
-                        <!-- Add other attributes and information here -->
+
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="card-footer bg-light text-muted text-center">
-                <a asp-action="HemProfil" asp-controller="Profiler" class="btn btn-primary">Tillbaka till Profil-lista</a>
+                <a asp-action="HemProfil" asp-controller="Profiler" class="btn btn-primary">Back to Profile</a>
             </div>
         </div>
     </div>
@@ -94,11 +99,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-

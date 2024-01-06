@@ -10,6 +10,7 @@ namespace CVPortalen.Controllers
     {
         private readonly ProfilContext _dBContext;
         private readonly UserManager<Anvandare> _userManager;
+        
 
         public HomeController(ProfilContext dbContext, UserManager<Anvandare> userManager)
         {
