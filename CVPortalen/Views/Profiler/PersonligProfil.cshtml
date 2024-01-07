@@ -44,7 +44,10 @@
             <div class="card-body">
                 <!-- Navigation Links -->
                 <div class="text-right mb-3">
-                    <a asp-controller="Account" asp-action="ChangePassword" asp-route-id="@User.Identity.Name" class="btn btn-primary">Byt lösenord</a>
+                    @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AnvandarNamn)
+                    {
+                        <a asp-controller="Account" asp-action="ChangePassword" asp-route-id="@User.Identity.Name" class="btn btn-primary">Byt lösenord</a>
+                    }   
                 </div>
                 <!-- Profile Information -->
                 <div class="row">
@@ -75,6 +78,7 @@
             </div>
             <div class="card-footer bg-light text-muted text-center">
                 <a asp-action="HemProfil" asp-controller="Profiler" class="btn btn-primary">Tillbaka till Profil-lista</a>
+                <a asp-action="SkickaMeddelande" asp-controller="Message" asp-route-profilid="@Model.ProfilId" class="btn btn-success">Skicka Meddelande</a>
             </div>
         </div>
     </div>

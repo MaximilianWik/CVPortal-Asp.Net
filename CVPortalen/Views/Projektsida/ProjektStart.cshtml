@@ -27,8 +27,9 @@
                 <td>@project.Artal</td>
                 <td>@project.Infromation</td>
                 <td>
-                    <a asp-action="ProfilAnton" asp-controller="Profiler" asp-route-id="@project.User.Id">@project.User.UserName</a>
+                    <a asp-action="HoppaTillProfil" asp-controller="Profiler" asp-route-userName="@project.User.UserName">@project.User.UserName</a>
                 </td>
+
                 <td>
                     <a asp-action="ProjektDetails" asp-controller="Projektsida" asp-route-id="@project.ProjektId" class="btn btn-primary">Details</a>
                     @if (User.Identity.IsAuthenticated && project.User.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))

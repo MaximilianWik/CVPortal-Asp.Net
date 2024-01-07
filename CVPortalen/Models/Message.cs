@@ -7,7 +7,7 @@ namespace CVPortalen.Models
         public int Id { get; set; }
 
         [Required]
-        public string SenderId { get; set; }
+        public string? SenderId { get; set; }
 
         [Required]
         public string ReceiverId { get; set; }

@@ -1,0 +1,25 @@
+﻿@model List<Message>
+
+<h2>Inbox</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>From</th>
+            <th>Content</th>
+            <th>Sent At</th>
+            <th>Is Read</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model)
+        {
+            <tr>
+                <td>@message.Sender.UserName</td>
+                <td>@message.Content</td>
+                <td>@message.SentAt</td>
+                <td>@message.IsRead</td>
+            </tr>
+        }
+    </tbody>
+</table>
