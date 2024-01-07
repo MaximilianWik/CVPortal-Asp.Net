@@ -4,6 +4,7 @@ using CVPortalen.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CVPortalen.Migrations
 {
     [DbContext(typeof(ProfilContext))]
-    partial class ProfilContextModelSnapshot : ModelSnapshot
+    [Migration("20240107153206_AddOkandSandare")]
+    partial class AddOkandSandare
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,13 +134,33 @@ namespace CVPortalen.Migrations
                     b.ToTable("cVs");
                 });
 
-            modelBuilder.Entity("CVPortalen.Models.Message", b =>
+            modelBuilder.Entity("CVPortalen.Models.Meddelande", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("MeddelandeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MeddelandeId"));
+
+                    b.Property<string>("MeddelandeText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SkickatTill")
+                        .HasColumnType("int");
+
+                    b.HasKey("MeddelandeId");
+
+                    b.ToTable("meddelande");
+                });
+
+            modelBuilder.Entity("CVPortalen.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -145,6 +168,9 @@ namespace CVPortalen.Migrations
 
                     b.Property<bool>("IsRead")
                         .HasColumnType("bit");
+
+                    b.Property<string>("OkandSandare")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReceiverId")
                         .IsRequired()
@@ -403,16 +429,17 @@ namespace CVPortalen.Migrations
             modelBuilder.Entity("CVPortalen.Models.Message", b =>
                 {
                     b.HasOne("CVPortalen.Models.Anvandare", "Receiver")
-                        .WithMany("RecivedMessages")
+                        .WithMany()
                         .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CVPortalen.Models.Anvandare", "Sender")
                         .WithMany("SentMessages")
                         .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_Messages_AspNetUsers_SenderId");
 
                     b.Navigation("Receiver");
 
@@ -499,8 +526,6 @@ namespace CVPortalen.Migrations
 
                     b.Navigation("Profil")
                         .IsRequired();
-
-                    b.Navigation("RecivedMessages");
 
                     b.Navigation("SentMessages");
 

@@ -16,18 +16,64 @@ namespace CVPortalen.Controllers
                 this.userManager = userManager;
                 this.dbContext = dbContext;
             }
+        [HttpGet]
+        public IActionResult Inbox()
+        {
+            // Hämta användarens ID
+            var userId = userManager.GetUserId(User);
 
-            public IActionResult Inbox()
+            // Hämta olästa meddelanden för användaren
+            var unreadMessagesCount = dbContext.Messages
+                .Where(m => m.ReceiverId == userId && !m.IsRead)
+                .Count();
+
+            // Sätt antalet olästa meddelanden i ViewBag för att användas i vyn
+            ViewBag.UnreadMessagesCount = unreadMessagesCount;
+
+            // Hämta användarens alla meddelanden
+            var messages = dbContext.Messages
+                .Where(m => m.ReceiverId == userId)
+                .OrderByDescending(m => m.SentAt)
+                .ToList();
+
+            return View(messages);
+        }
+
+        [HttpPost]
+        public IActionResult MarkAsRead(int messageId, bool isChecked)
+        {
+            try
             {
-                // Hämta användarens meddelanden
-                var userId = userManager.GetUserId(User);
-                var messages = dbContext.Messages
-                    .Where(m => m.ReceiverId == userId)
-                    .OrderByDescending(m => m.SentAt)
-                    .ToList();
+                // Hämta meddelandet från databasen baserat på messageId
+                var message = dbContext.Messages.Find(messageId);
 
-                return View(messages);
+                if (message == null)
+                {
+                    // Meddelandet finns inte i databasen
+                    return Json(new { success = false, error = "Message not found" });
+                }
+
+                // Uppdatera IsRead-egenskapen baserat på användarens val
+                message.IsRead = isChecked;
+
+                // Spara ändringarna i databasen
+                dbContext.SaveChanges();
+
+                // Hämta antalet olästa meddelanden för den inloggade användaren
+                var userId = userManager.GetUserId(User);
+                var unreadCount = dbContext.Messages.Count(m => m.ReceiverId == userId && !m.IsRead);
+
+                // Returnera både resultatet av operationen och det uppdaterade antalet olästa meddelanden
+                return Json(new { success = true, unreadCount = unreadCount });
             }
+            catch (Exception ex)
+            {
+                // Något gick fel vid uppdatering av databasen
+                return Json(new { success = false, error = ex.Message });
+            }
+        }
+
+
 
         [HttpGet]
         [AllowAnonymous]
@@ -69,7 +115,6 @@ namespace CVPortalen.Controllers
 
             return View(viewModel);
         }
-
 
 
         [HttpPost]
@@ -134,29 +179,8 @@ namespace CVPortalen.Controllers
                 // Återvänd till Inbox-åtgärden för att visa uppdaterad inkorg
                 return RedirectToAction("Inbox");
             }
-
-            // Om ModelState inte är giltig, återgå till samma vyn för att visa felmeddelanden
             return View(viewModel);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

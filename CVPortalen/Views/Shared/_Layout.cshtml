@@ -11,17 +11,16 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CVPortalen.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        .text-rainbow {
-            background: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
-            -webkit-background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
-    </style>
+
 </head>
 <body>
     <header>
+        @* <form asp-action="Index" method=" get">
+        <label> Sök på användare</label>
+        <input type="text" name="id" />
+        <button type="submit">Sök</button>
+        </form> *@
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CVPortalen</a>
@@ -45,14 +44,22 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Message" asp-action="Inbox">
+                                    Inbox
+                                    @if (ViewBag.UnreadMessagesCount > 0)
+                                    {
+                                        <span class="badge badge-danger">@ViewBag.UnreadMessagesCount</span>
+                                    }
+                                </a>
+                                <span>Antal olästa meddelanden: <span id="unreadMessagesCount">@ViewBag.UnreadMessagesCount</span>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">Logga ut</a>
                             </li>
                             <li class="nav-item">
                                 <span class="nav-link text-muted">Välkommen: @User.Identity.Name</span>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Message" asp-action="Inbox">Inbox</a>
-                            </li>
+
                         }
                         else
                         {
@@ -70,6 +77,7 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+
     </div>
 
     <footer class="border-top footer text-muted">
@@ -83,7 +91,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-
-
-

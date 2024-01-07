@@ -9,20 +9,21 @@ namespace CVPortalen.Models
         internal int? profilid;
 
         [Key]
-        public int ProfilId { get; set; } 
-
-        public string Name { get; set; } 
+        
+        public int ProfilId { get; set; }
+        
+        public string Name { get; set; }
         
         public string Adress { get; set; }
         
         public string AnvandarNamn { get; set; }
 
         public string Losenord { get; set; }
-
+        
         public int TelefonNummer { get; set; }
-
+     
         public string Epost { get; set; }
-
+        
         public byte[] ProfilePicture { get; set; }
 
         public bool IsPrivate { get; set; }

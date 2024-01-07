@@ -18,8 +18,40 @@
                 <td>@message.Sender.UserName</td>
                 <td>@message.Content</td>
                 <td>@message.SentAt</td>
-                <td>@message.IsRead</td>
+                <td>
+                    <!-- Lägg till en checkbox för att markera som läst -->
+                    <input type="checkbox" id="readCheckbox_@message.Id"
+                    @(message.IsRead ? "checked" : "")
+                           onclick="markAsRead('@message.Id', this.checked)" />
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section scripts {
+    <script>
+        function markAsRead(messageId, isChecked) {
+            // Skicka en AJAX-förfrågan för att uppdatera IsRead i databasen
+            $.ajax({
+                url: '/Message/MarkAsRead',
+                type: 'POST',
+                data: { messageId: messageId, isChecked: isChecked },
+                success: function (result) {
+                    // Uppdatera checkbox-status baserat på resultatet från servern
+                    if (result.success) {
+                        // Uppdatera antalet olästa meddelanden i hela sidan
+                        $('#unreadMessagesCount').text(result.unreadCount);
+                    } else {
+                        console.error(result.error);
+                    }
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+    </script>
+}
+
+
