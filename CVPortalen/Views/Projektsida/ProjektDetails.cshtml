@@ -33,7 +33,9 @@
     <h3>@Model.ProjektName</h3>
     <p>Year: @Model.Artal</p>
     <p>Information: @Model.Infromation</p>
-    <p>Creator: <a asp-action="ProfilAnton" asp-controller="Profiler" asp-route-id="@Model.User.Id">@Model.User.UserName</a></p>
+    <p>Creator:<a asp-action="HoppaTillProfil" asp-controller="Profiler" asp-route-userName="@Model.User.UserName">@Model.User.UserName</a></p>
+    <a asp-action="ProjektStart" asp-controller="Projektsida" class="btn btn-warning">Gå tillbaka till projektlistan</a>
+
 </div>
 
 <!-- Lägg till en lista för att visa deltagarna -->
