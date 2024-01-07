@@ -112,36 +112,56 @@ namespace CVPortalen.Controllers
         {
             return View();
         }
+        //[HttpGet]
+        //public IActionResult EditCV(int? id)
+        //{
+        //    {
+        //        if (id == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        var existingCV = _context.cVs.FirstOrDefault(p => p.CVId == id);
+
+
+        //        if (existingCV == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        return View(existingCV);
+        //    }
+        //}
         [HttpGet]
-        public IActionResult EditCV(int? id)
+        public IActionResult EditCV(int id)
         {
+            var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
+
+            if (cv != null && cv.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
-                if (id == null)
-                {
-                    return NotFound();
-                }
-
-                var existingCV = _context.cVs.FirstOrDefault(p => p.CVId == id);
-
-                if (existingCV == null)
-                {
-                    return NotFound();
-                }
-
-                return View(existingCV);
-                //var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
-
-                //if (cv != null && cv.Skapare == User.FindFirstValue(ClaimTypes.NameIdentifier))
-                //{
-                //    // Användaren är skaparen av CV:t, och det är tillåtet att redigera
-                //    return View(cv); // Använd befintligt CV-objekt här istället för ny instans
-                //}
-                //else
-                //{
-                //    // Användaren har inte behörighet att redigera detta CV
-                //    return RedirectToAction("EditCV");
+                // Användaren är skaparen av CV:t, och det är tillåtet att redigera
+                return View(cv);
+            }
+            else
+            {
+                // Användaren har inte behörighet att redigera detta CV
+                return RedirectToAction("CVStart");
             }
         }
+
+        //var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
+
+        //if (cv != null && cv.Skapare == User.FindFirstValue(ClaimTypes.NameIdentifier))
+        //{
+        //    // Användaren är skaparen av CV:t, och det är tillåtet att redigera
+        //    return View(cv); // Använd befintligt CV-objekt här istället för ny instans
+        //}
+        //else
+        //{
+        //    // Användaren har inte behörighet att redigera detta CV
+        //    return RedirectToAction("EditCV");
+
+
 
 
 
