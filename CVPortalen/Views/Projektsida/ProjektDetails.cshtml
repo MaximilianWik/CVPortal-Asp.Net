@@ -17,7 +17,10 @@
     <ul id="deltagare-list">
         @foreach (var deltagare in Model.Deltagare)
         {
-            <li>@deltagare.UserName</li>
+            @if (!deltagare.Profil.IsPrivate || User.Identity.IsAuthenticated)
+            {
+                <li>@deltagare.UserName</li>
+            }
         }
     </ul>
 </div>
@@ -59,5 +62,3 @@
         }
     </script>
 }
-
-

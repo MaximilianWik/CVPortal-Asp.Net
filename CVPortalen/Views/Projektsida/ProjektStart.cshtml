@@ -22,30 +22,34 @@
     <tbody>
         @foreach (var project in Model)
         {
-            <tr>
-                <td>@project.ProjektName</td>
-                <td>@project.Artal</td>
-                <td>@project.Infromation</td>
-                <td>
-                    <a asp-action="HoppaTillProfil" asp-controller="Profiler" asp-route-userName="@project.User.UserName">@project.User.UserName</a>
-                </td>
+            // Check if the project is public or if the user is authenticated
+            @if (project.User != null && project.User.Profil != null && !project.User.Profil.IsPrivate || User.Identity.IsAuthenticated)
+            {
+                <tr>
+                    <td>@project.ProjektName</td>
+                    <td>@project.Artal</td>
+                    <td>@project.Infromation</td>
+                    <td>
+                        <a asp-action="HoppaTillProfil" asp-controller="Profiler" asp-route-userName="@project.User.UserName">@project.User.UserName</a>
+                    </td>
 
-                <td>
-                    <a asp-action="ProjektDetails" asp-controller="Projektsida" asp-route-id="@project.ProjektId" class="btn btn-primary">Details</a>
-                    @if (User.Identity.IsAuthenticated && project.User.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))
-                    {
-                        <a href="#" onclick="joinProject(@project.ProjektId)" class="btn btn-success">Join Project</a>
-                    }
-                    @if (User.Identity.IsAuthenticated && project.User.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
-                    {
-                        <!-- Lägg till knappen för att ta bort projektet -->
-                        <a href="#" onclick="removeProject(@project.ProjektId)" class="btn btn-danger">Remove Project</a>
+                    <td>
+                        <a asp-action="ProjektDetails" asp-controller="Projektsida" asp-route-id="@project.ProjektId" class="btn btn-primary">Details</a>
+                        @if (User.Identity.IsAuthenticated && project.User.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))
+                        {
+                            <a href="#" onclick="joinProject(@project.ProjektId)" class="btn btn-success">Join Project</a>
+                        }
+                        @if (User.Identity.IsAuthenticated && project.User.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                        {
+                            <!-- Lägg till knappen för att ta bort projektet -->
+                            <a href="#" onclick="removeProject(@project.ProjektId)" class="btn btn-danger">Remove Project</a>
 
-                        <!-- Lägg till knappen för att redigera projektet -->
-                        <a asp-action="EditProjekt" asp-controller="Projektsida" asp-route-id="@project.ProjektId" class="btn btn-warning">Edit Project</a>
-                    }
-                </td>
-            </tr>
+                            <!-- Lägg till knappen för att redigera projektet -->
+                            <a asp-action="EditProjekt" asp-controller="Projektsida" asp-route-id="@project.ProjektId" class="btn btn-warning">Edit Project</a>
+                        }
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
@@ -93,8 +97,3 @@
         }
     </script>
 }
-
-
-
-
-
