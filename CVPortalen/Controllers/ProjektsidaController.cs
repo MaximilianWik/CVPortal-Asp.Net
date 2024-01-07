@@ -250,7 +250,7 @@ namespace CVPortalen.Controllers
 
                     _context.SaveChanges();
 
-                    return RedirectToAction("ProjektDetails", new { id = editedProjekt.ProjektId });
+                    return RedirectToAction("ProjektStart", new { id = editedProjekt.ProjektId });
                 }
                 catch (Exception ex)
                 {

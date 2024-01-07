@@ -93,7 +93,7 @@ namespace CVPortalen.Controllers
                 return Json(new { success = true, message = "CV-objekt borttagna framgångsrikt." });
             }
             catch (Exception ex)
-            {
+            {   
                 return Json(new { success = false, message = "Ett fel uppstod vid borttagning av CV-objekt: " + ex.Message });
             }
         }
@@ -113,21 +113,36 @@ namespace CVPortalen.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult EditCV(int id)
+        public IActionResult EditCV(int? id)
         {
-            var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            if (cv != null && cv.Skapare == User.FindFirstValue(ClaimTypes.NameIdentifier))
-            {
-                // Användaren är skaparen av CV:t, och det är tillåtet att redigera
-                return View(new CV());
-            }
-            else
-            {
-                // Användaren har inte behörighet att redigera detta CV
-                return RedirectToAction("EditCV");
+                var existingCV = _context.cVs.FirstOrDefault(p => p.CVId == id);
+
+                if (existingCV == null)
+                {
+                    return NotFound();
+                }
+
+                return View(existingCV);
+                //var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
+
+                //if (cv != null && cv.Skapare == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                //{
+                //    // Användaren är skaparen av CV:t, och det är tillåtet att redigera
+                //    return View(cv); // Använd befintligt CV-objekt här istället för ny instans
+                //}
+                //else
+                //{
+                //    // Användaren har inte behörighet att redigera detta CV
+                //    return RedirectToAction("EditCV");
             }
         }
+
 
 
         [HttpPost]
@@ -151,15 +166,14 @@ namespace CVPortalen.Controllers
                     }
 
                     // Uppdatera andra detaljer i CV:et
-                    existingCV.Skapare = editedCV.Skapare;
+
                     existingCV.TidigareErfarenheter = editedCV.TidigareErfarenheter;
                     existingCV.Utbildningar = editedCV.Utbildningar;
                     existingCV.Kompetenser = editedCV.Kompetenser;
 
-                    _context.cVs.Update(existingCV);
                     _context.SaveChanges();
 
-                    return RedirectToAction("EditCV", new { id = editedCV.CVId });
+                    return RedirectToAction("Details", new { id = editedCV.CVId }); // Byt till önskad vy
                 }
                 catch (Exception ex)
                 {

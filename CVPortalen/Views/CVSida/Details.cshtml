@@ -43,14 +43,14 @@
                             <p>@Model.Utbildningar</p>
                         </div>
                         <div class="col-md-4">
-                            <h5 class="text-muted">Beskrivning:</h5>
+                            <h5 class="text-muted">Kompetenser:</h5>
                             <p>@Model.Kompetenser</p>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer bg-light text-muted text-center">
                     <a asp-action="CVStart" asp-controller="CVSida" class="btn btn-primary">Tillbaka till CV-lista</a>
-                    <a asp-controller="CVSida" asp-action="EditCV" asp-route-id="@User.Identity.Name" class="btn btn-primary">Redigera  CV</a>
+                    <a asp-controller="CVSida" asp-action="EditCV" asp-route-id="@Model.CVId" class="btn btn-primary">Redigera  CV</a>
                 </div>
             </div>
         </div>
