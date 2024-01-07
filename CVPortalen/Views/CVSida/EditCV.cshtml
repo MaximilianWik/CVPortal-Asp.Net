@@ -1,0 +1,59 @@
+﻿@model CVPortalen.Models.CV
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit CV</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add any custom CSS here */
+        .profile-container {
+            max-width: 600px;
+            margin: auto;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container profile-container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">Edit CV</h2>
+            </div>
+            <div class="card-body">
+                <form asp-action="EditCV" asp-controller="CVSida" method="post">
+                    <input type="hidden" asp-for="CVId" />
+                    <input type="hidden" asp-for="Skapare" />
+                    <div class="form-group">
+                        <label asp-for="TidigareErfarenheter">Tidigare Erfarenheter:</label>
+                        <textarea asp-for="TidigareErfarenheter" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Utbildningar">Utbildningar:</label>
+                        <textarea asp-for="Utbildningar" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Kompetenser">Kompetenser:</label>
+                        <textarea asp-for="Kompetenser" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer bg-light text-muted text-center">
+                <a asp-action="EditCV" asp-controller="CVSida" asp-route-id="@Model.CVId" class="btn btn-secondary">Back to CV</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JavaScript (if not already included) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -50,6 +50,7 @@
                 </div>
                 <div class="card-footer bg-light text-muted text-center">
                     <a asp-action="CVStart" asp-controller="CVSida" class="btn btn-primary">Tillbaka till CV-lista</a>
+                    <a asp-controller="CVSida" asp-action="EditCV" asp-route-id="@User.Identity.Name" class="btn btn-primary">Redigera  CV</a>
                 </div>
             </div>
         </div>

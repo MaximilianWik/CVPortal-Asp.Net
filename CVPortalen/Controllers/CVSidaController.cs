@@ -112,9 +112,69 @@ namespace CVPortalen.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult EditCV(int id)
+        {
+            var cv = _context.cVs.FirstOrDefault(c => c.CVId == id);
+
+            if (cv != null && cv.Skapare == User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                // Användaren är skaparen av CV:t, och det är tillåtet att redigera
+                return View(new CV());
+            }
+            else
+            {
+                // Användaren har inte behörighet att redigera detta CV
+                return RedirectToAction("EditCV");
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult EditCV(int id, [Bind("CVId, Skapare, TidigareErfarenheter, Utbildningar, Kompetenser")] CV editedCV)
+        {
+            if (id != editedCV.CVId)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                try
+                {
+                    // Hämta befintlig CV-data från databasen baserat på det angivna id:et
+                    var existingCV = _context.cVs.FirstOrDefault(cv => cv.CVId == id);
+
+                    if (existingCV == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Uppdatera andra detaljer i CV:et
+                    existingCV.Skapare = editedCV.Skapare;
+                    existingCV.TidigareErfarenheter = editedCV.TidigareErfarenheter;
+                    existingCV.Utbildningar = editedCV.Utbildningar;
+                    existingCV.Kompetenser = editedCV.Kompetenser;
+
+                    _context.cVs.Update(existingCV);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("EditCV", new { id = editedCV.CVId });
+                }
+                catch (Exception ex)
+                {
+                    return View("error");
+                }
+            }
+
+            // Om modelltillståndet inte är giltigt, återgå till redigeringsvyn med CV-detaljerna
+            return View(editedCV);
+        }
 
     }
+
 }
+
 
    
 
