@@ -20,7 +20,8 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var cv in Model)
+@*             Kollar om användaren är inloggad eller inte, och isåfall visar/visar inte CV:et för skaparen av CV:et
+ *@            @foreach (var cv in Model)
             {
                 <tr>
                     <td class="col">

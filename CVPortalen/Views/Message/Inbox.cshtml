@@ -1,8 +1,8 @@
 ﻿@model List<Message>
 
 <h2>Inbox</h2>
-
-<table class="table">
+@* Vyn för inboxen där meddelanden hamnar
+ *@<table class="table">
     <thead>
         <tr>
             <th>From</th>
@@ -19,7 +19,6 @@
                 <td>@message.Content</td>
                 <td>@message.SentAt</td>
                 <td>
-                    <!-- Lägg till en checkbox för att markera som läst -->
                     <input type="checkbox" id="readCheckbox_@message.Id"
                     @(message.IsRead ? "checked" : "")
                            onclick="markAsRead('@message.Id', this.checked)" />

@@ -26,7 +26,8 @@
     </div>
 </div>
  *@
-<div class="container mt-5">
+@*  Denna vy visar information om ett specifikt CV
+ *@<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -51,13 +52,11 @@
                 </div>
                 <div class="card-footer bg-light text-muted text-center">
                     <a asp-action="CVStart" asp-controller="CVSida" class="btn btn-primary">Tillbaka till CV-lista</a>
-
-<!-- Your other HTML code here -->
-                    @if (User.Identity.IsAuthenticated && Model != null && Model.UserId != null && Model.User.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+@*                     Kollar om användaren är skaparen av CV:et så att användaren kan redigera
+ *@                    @if (User.Identity.IsAuthenticated && Model != null && Model.UserId != null && Model.User.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
                     {
                         <a asp-action="EditCV" asp-controller="CVSida" asp-route-id="@Model.CVId" class="btn btn-primary">Redigera CV</a>
                     }
-<!-- Your other HTML code here -->
 
                 </div>
             </div>

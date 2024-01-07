@@ -204,6 +204,8 @@ namespace CVPortalen.Controllers
         //    return Json(new { success = false, message = "Valideringsfel", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
         //}
 
+
+        // Kollar om värdet är null eller inte, om inte null returnerar projektet
         [HttpGet]
         public IActionResult EditProjekt(int? id)
         {
@@ -222,6 +224,7 @@ namespace CVPortalen.Controllers
             return View(existingProjekt);
         }
 
+        // Tar emot projektID kollar om de matchar och sedan sparar ändringar i databasen, har även en catch som fångar upp error
         [HttpPost]
         public IActionResult EditProjekt(int id, [Bind("ProjektId,ProjektName,Artal,Infromation,UserId")] Projekt editedProjekt)
         {
@@ -241,9 +244,9 @@ namespace CVPortalen.Controllers
                         return NotFound();
                     }
 
-                    // Log information for debugging
+                   
 
-                    // Update project details
+                   
                     existingProjekt.ProjektName = editedProjekt.ProjektName;
                     existingProjekt.Artal = editedProjekt.Artal;
                     existingProjekt.Infromation = editedProjekt.Infromation;
@@ -258,7 +261,6 @@ namespace CVPortalen.Controllers
                 }
             }
 
-            // If model state is not valid, return to the edit view with the project details
             return View(editedProjekt);
         }
 

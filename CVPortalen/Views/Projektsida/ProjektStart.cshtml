@@ -2,10 +2,9 @@
 @model List<Projekt>
 
 <h2>Projects</h2>
-
-@if (User.Identity.IsAuthenticated)
+@* Vyn för att skapa projekt, kollar först om användaren är inloggad
+ *@@if (User.Identity.IsAuthenticated)
 {
-    <!-- Lägg till en länk för att skapa ett projekt -->
     <a asp-action="CreateProjekt" asp-controller="Projektsida" class="btn btn-primary">Create Project</a>
 }
 
@@ -22,7 +21,7 @@
     <tbody>
         @foreach (var project in Model)
         {
-            // Check if the project is public or if the user is authenticated
+            // Kollar om användaren som deltar/skaparn av projektet är privat
             @if (project.User != null && project.User.Profil != null && !project.User.Profil.IsPrivate || User.Identity.IsAuthenticated)
             {
                 <tr>
@@ -57,16 +56,13 @@
 @section scripts {
     <script>
         function joinProject(projectId) {
-            // Implementera logiken för att gå med i projektet här med AJAX-förfrågan
             $.ajax({
                 url: '@Url.Action("JoinProjekt", "Projektsida")',
                 type: 'POST',
                 data: { projectId: projectId },
                 success: function (result) {
-                    // Uppdatera vyn eller vidta andra åtgärder vid behov
                     alert(result.message);
                     if (result.success) {
-                        // Uppdatera vyn, exempelvis genom att ladda om sidan
                         location.reload();
                     }
                 },
@@ -77,16 +73,13 @@
         }
 
         function removeProject(projectId) {
-            // Implementera logiken för att ta bort projektet här med AJAX-förfrågan
             $.ajax({
                 url: '@Url.Action("RemoveProjekt", "Projektsida")',
                 type: 'POST',
                 data: { projectId: projectId },
                 success: function (result) {
-                    // Uppdatera vyn eller vidta andra åtgärder vid behov
                     alert(result.message);
                     if (result.success) {
-                        // Uppdatera vyn, exempelvis genom att ladda om sidan
                         location.reload();
                     }
                 },

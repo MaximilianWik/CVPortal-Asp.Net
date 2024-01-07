@@ -1,15 +1,14 @@
 ﻿@model CVPortalen.Models.Profil
-
-<!DOCTYPE html>
+@* Vyn för profiler, där vissa funktioner visas beroende på om man är kollar på sin egna eller någon annans
+ *@<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personlig Profil</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Add any custom CSS here */
+       
         .profile-container {
             max-width: 600px;
             margin: auto;
@@ -20,7 +19,7 @@
             max-width: 100%;
             height: auto;
             border-radius: 10px;
-            margin-bottom: 10px; /* Add some spacing below the profile picture */
+            margin-bottom: 10px; 
         }
 
         .custom-file-upload {
@@ -49,19 +48,17 @@
                         <a asp-controller="Account" asp-action="ChangePassword" asp-route-id="@User.Identity.Name" class="btn btn-primary">Byt lösenord</a>
                     }   
                 </div>
-                <!-- Profile Information -->
+                <!-- Profil information -->
                 <div class="row">
                     <div class="col-md-4">
-                        <!-- Add logic to display the profile picture here -->
                         <img id="profilePreview" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)" alt="Profilbild" class="profile-image">
-                        <!-- Add a custom button to choose a profile picture -->
                         <!-- @if (User.Identity.IsAuthenticated)
                         {
                                 <label for="fileInput" class="custom-file-upload">Välj profilbild</label>
                                 <input type="file" id="fileInput" onchange="previewProfileImage()" />
                         } -->
-                        <!-- Add the code for editing profile if the user is the owner -->
-                        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AnvandarNamn)
+@*                         Kollar om användaren är den inloggade användaren och kan då redigera sin egna profil
+ *@                        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AnvandarNamn)
                         {
                             <a asp-action="EditProfil" asp-controller="Profiler" asp-route-id="@Model.ProfilId" method="get" class="btn btn-primary">Redigera Profil</a>
                         }
@@ -72,7 +69,6 @@
                         <p><strong>Användarnamn:</strong> @Model.AnvandarNamn</p>
                         <p><strong>Telefonnummer:</strong> @Model.TelefonNummer</p>
                         <p><strong>E-post:</strong> @Model.Epost</p>
-                        <!-- Add other attributes and information here -->
                     </div>
                 </div>
             </div>
@@ -83,7 +79,6 @@
         </div>
     </div>
 
-    <!-- jQuery and Bootstrap JavaScript (if not already included) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>

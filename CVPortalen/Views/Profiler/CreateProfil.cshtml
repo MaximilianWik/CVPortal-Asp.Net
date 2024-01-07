@@ -3,11 +3,11 @@
 @{
     ViewBag.Title = "Create Profile";
 }
-
-<h2>Create New Profile</h2>
+@* Vyn för att skapa en ny användare
+ *@<h2>Create New Profile</h2>
 
 <form asp-action="CreateProfil" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="AnvandarNamn" value="@User.Identity.Name" />
+    <input type="hidden" asp-for="AnvandarNamn" value="@User.Identity.Name" />  
     <input type="hidden" asp-for="Losenord" value="******" />
 
     <div class="form-group">

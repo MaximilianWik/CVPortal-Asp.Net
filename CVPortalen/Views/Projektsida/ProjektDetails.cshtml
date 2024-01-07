@@ -2,8 +2,8 @@
 @model CVPortalen.Models.Projekt
 
 <h2>Project Details</h2>
-
-
+@* Vyn för att se mer information om valt projekt
+ *@
 @*  //              *  ,MMM8&&&.            *
     //                MMMM88&&&&&    .
     //               MMMM88&&&&&&&
@@ -60,7 +60,6 @@
 
 @section scripts {
     <script>
-        // Här är din JavaScript-kod för AJAX och uppdatering av deltagarlistan
         function leaveProject(projectId) {
             $.ajax({
                 url: '@Url.Action("LeaveProject", "Projektsida")',
@@ -69,7 +68,7 @@
                 success: function (result) {
                     alert(result.message);
                     if (result.success) {
-                        // Uppdatera sidan med de nya deltagarna
+                        // Uppdaterar sidan med de nya deltagarna
                         updateDeltagareList(result.deltagare);
                     }
                 },

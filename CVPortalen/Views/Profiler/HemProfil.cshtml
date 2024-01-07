@@ -1,8 +1,8 @@
 ﻿@model List<Profil>
 
 <h2>Profil-lista</h2>
-
-<form asp-action="HemProfil" method="post" class="mb-3">
+@* Vyn för att se alla profiler
+ *@<form asp-action="HemProfil" method="post" class="mb-3">
     <div class="form-group">
         <label for="searchTerm">Search:</label>
         <input type="text" id="searchTerm" name="searchTerm" class="form-control" />
@@ -80,7 +80,7 @@
             $('#searchTerm').on('input', function () {
                 var searchTerm = $(this).val().toLowerCase();
                 $.ajax({
-                    url: '/ProfilerController/HemProfil', // Update 'YourControllerName'
+                    url: '/ProfilerController/HemProfil', 
                     method: 'POST',
                     data: { searchTerm: searchTerm },
                     success: function (partialView) {
