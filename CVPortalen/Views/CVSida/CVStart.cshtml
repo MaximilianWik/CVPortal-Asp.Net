@@ -24,7 +24,14 @@
             {
                 <tr>
                     <td class="col">
-                        <a asp-action="Details" asp-controller="CVSida" asp-route-id="@cv.CVId">@cv.Skapare</a>
+                        @if (User.Identity.IsAuthenticated || (cv.User != null && cv.User.Profil != null && !cv.User.Profil.IsPrivate))
+                        {
+                            <a asp-action="Details" asp-controller="CVSida" asp-route-id="@cv.CVId">@cv.Skapare</a>
+                        }
+                        else
+                        {
+                            <span>Privat Användare</span>
+                        }
                     </td>
                     <td class="col">@cv.Utbildningar</td>
                     <td class="col">@cv.Kompetenser</td>
@@ -67,6 +74,7 @@
         });
     </script>
 }
+
 @functions {
     public string TruncateDescription(string description, int maxLength)
     {
@@ -81,6 +89,3 @@
         }
     }
 }
-
-
-
