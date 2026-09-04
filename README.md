@@ -66,8 +66,3 @@ CVPortalen/
    ```
 5. Navigate to `https://localhost:<port>` in your browser.
 
-## Notes
-
-- The codebase mixes Swedish and English naming (`Anvandare` = User, `Profil` = Profile, `Projekt` = Project, `Meddelande`/`Message`).
-- `Startup.cs` is present but fully commented out and unused — configuration lives in `Program.cs` (minimal hosting model).
-- Some migration names and comments in the codebase are informal placeholders from development and should be cleaned up before production use.
